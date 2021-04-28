@@ -6,12 +6,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dataRouter = require('./routes/data');
 require('dotenv').config()
 var app = express();
+app.use(cors());
 
 // DB connection
 var MONGODB_URL = process.env.MONGODB_URL;

@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 
-const AutoIncrement = require('mongoose-sequence')(mongoose);
-
 var dataSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
@@ -81,8 +79,6 @@ var dataSchema = mongoose.Schema({
     courseChoice1: String,
     courseChoice2: String
 });
-
-dataSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Export Data model
 var Data = module.exports = mongoose.model('data', dataSchema);
