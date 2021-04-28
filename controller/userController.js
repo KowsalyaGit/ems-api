@@ -1,0 +1,143 @@
+User = require('../model/userModel');
+require('dotenv').config();
+
+const password = require('secure-random-password');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+    port: process.env.SMTP_PORT,
+    host: process.env.SMTP_HOST,
+       auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
+         },
+    secure: true,
+    tls: {
+        rejectUnauthorized: false
+    }
+    });
+
+//Register
+exports.register = async (req, res) => {
+
+    const { mobileNo, emailId, role } = req.body;
+
+    let user = await User.findOne({
+        $or: [
+          { 'mobileNo': mobileNo },
+          { 'emailId': emailId }
+        ]
+      });
+
+      if(user) {
+        res.status(400).json({
+            status: "error",
+            message: "User already exist",
+        });
+      }
+
+      const pass = password.randomPassword();
+
+      const salt = await bcrypt.genSalt(10);
+
+      user = new User();
+      user.mobileNo = mobileNo;
+      user.emailId = emailId;
+      user.role = role;
+      user.password = await bcrypt.hash(pass, salt);
+
+      user.save(function (err) {
+        if (err) {
+            res.status(400).json({
+                status: "error",
+                message: err,
+            });
+        }
+        const mailData = {
+            from: process.env.SMTP_USER,  // sender address
+              to: user.emailId,   // list of receivers
+              subject: 'Login Details',
+              text: 'Your password is: ' + pass,
+              html: '<b>Hey there, Welcome! </b>' +
+                     '<br> <strong>Your login details:</strong><br/>'+
+                     '<br> Username: '+ user.emailId +' or '+ user.mobileNo +'<br/>' +
+                     '<br> Password: '+ pass +'<br/>',
+            };
+
+        transporter.sendMail(mailData, function (err, info) {
+            if(err)
+              console.log(err)
+            else
+               console.log(info);
+        });
+
+        const payload = {
+            user: {
+                id: user._id,
+                role: user.role
+            }
+        };
+
+        jwt.sign( payload, process.env.JWT_SECRET, (err, token) => {
+            if (err) {
+                res.status(400).json({
+                    status: "error",
+                    message: err,
+                });
+                
+            }
+
+            res.json({status: "success", token: token});
+        });
+
+    });
+};
+
+//Login
+exports.login = async (req, res) => {
+    const { userId, password } = req.body;
+
+    let user = await User.findOne({
+        $or: [
+          { 'mobileNo': userId },
+          { 'emailId': userId }
+        ]
+      });
+
+      if(!user) {
+        res.status(400).json({
+            status: "error",
+            message: "User does not exist",
+        });
+      }
+
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if(!isMatch) {
+        res.status(400).json({
+            status: "error",
+            message: "Incorrect password",
+        });
+      }
+
+      const payload = {
+        user: {
+            id: user._id,
+            role: user.role
+        }
+        };
+
+        jwt.sign( payload, process.env.JWT_SECRET, (err, token) => {
+            if (err) {
+                res.status(400).json({
+                    status: "error",
+                    message: err,
+                });
+            }
+
+            res.json({status: "success", token: token});
+        });
+
+}
