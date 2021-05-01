@@ -73,6 +73,7 @@ var dataSchema = mongoose.Schema({
     maximumMarksTotal: String,
     marksObtainedTotal: String,
     hrSecCertNum: String,
+    certificateFile: String,
     partILang: String,
     partIIITotal: String,
     partIIIPercentage: String,

@@ -8,6 +8,10 @@ data.route('/')
     .post(dataController.new);
 data.route('/:id')
     .get(dataController.view)
-    .put(dataController.update);
+    .put(dataController.update)
+    .post(dataController.upload);
+
+data.route('/download/:file')
+    .get(dataController.download);
 
 module.exports = data;

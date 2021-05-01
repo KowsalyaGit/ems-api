@@ -74,3 +74,9 @@ typings/
 
 # FuseBox cache
 .fusebox/
+
+# exclude everything
+uploads/*
+
+# exception to the rule
+!uploads/.gitkeep 
