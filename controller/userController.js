@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
       });
 
       if(user) {
-        res.status(400).json({
+        return res.json({
             status: "error",
             message: "User already exist",
         });
@@ -50,7 +50,7 @@ exports.register = async (req, res) => {
 
       user.save(function (err) {
         if (err) {
-            res.status(400).json({
+            return res.json({
                 status: "error",
                 message: err,
             });
@@ -62,6 +62,7 @@ exports.register = async (req, res) => {
               text: 'Your password is: ' + pass,
               html: '<b>Hey there, Welcome! </b>' +
                      '<br> <strong>Your login details:</strong><br/>'+
+                     '<br> Login URL: http://localhost:3001/login <br/>'+ 
                      '<br> Username: '+ user.emailId +' or '+ user.mobileNo +'<br/>' +
                      '<br> Password: '+ pass +'<br/>',
             };
@@ -82,14 +83,14 @@ exports.register = async (req, res) => {
 
         jwt.sign( payload, process.env.JWT_SECRET, (err, token) => {
             if (err) {
-                res.status(400).json({
+                return res.json({
                     status: "error",
                     message: err,
                 });
                 
             }
 
-            res.json({status: "success", token: token});
+            return res.json({status: "success", token: token});
         });
 
     });
@@ -107,7 +108,7 @@ exports.login = async (req, res) => {
       });
 
       if(!user) {
-        res.status(400).json({
+        return res.json({
             status: "error",
             message: "User does not exist",
         });
@@ -116,7 +117,7 @@ exports.login = async (req, res) => {
       const isMatch = await bcrypt.compare(password, user.password);
 
       if(!isMatch) {
-        res.status(400).json({
+        return res.json({
             status: "error",
             message: "Incorrect password",
         });
@@ -131,13 +132,13 @@ exports.login = async (req, res) => {
 
         jwt.sign( payload, process.env.JWT_SECRET, (err, token) => {
             if (err) {
-                res.status(400).json({
+                return res.json({
                     status: "error",
                     message: err,
                 });
             }
 
-            res.json({status: "success", token: token});
+            return res.json({status: "success", token: token});
         });
 
 }
