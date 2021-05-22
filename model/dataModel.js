@@ -10,6 +10,7 @@ var dataSchema = mongoose.Schema({
     dob: String,
     placeofbirthwithdt: String,
     nationality: String,
+    nationality:String,
     community: String,
     caste: String,
     scholarshipReq: String,
