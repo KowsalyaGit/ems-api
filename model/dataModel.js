@@ -3,7 +3,9 @@ var mongoose = require('mongoose');
 var dataSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
+    MotherName:String,
     parentOccupation: String,
+    MotherOccupation: String,
     annualIncome: String,
     dob: String,
     placeofbirthwithdt: String,
