@@ -12,6 +12,12 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dataRouter = require('./routes/data');
 var paymentRouter = require('./routes/payment');
+var courseDetailsRouter = require('./routes/courseDetails');
+var userDetailsRouter = require('./routes/userDetails');
+var courseRouter = require('./routes/course');
+var feeMasterRouter = require('./routes/feeMaster');
+var feeListRouter = require('./routes/feeList');
+var incomeRouter = require('./routes/income');
 require('dotenv').config()
 var app = express();
 app.use(cors());
@@ -52,6 +58,12 @@ app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/data', dataRouter);
 app.use('/payment', paymentRouter);
+app.use('/course', courseRouter);
+app.use('/courseDetails', courseDetailsRouter);
+app.use('/userDetails', userDetailsRouter);
+app.use('/feeMaster', feeMasterRouter);
+app.use('/feeList', feeListRouter);
+app.use('/income', incomeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
