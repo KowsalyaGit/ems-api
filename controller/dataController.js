@@ -42,6 +42,11 @@ exports.index = function (req, res) {
 
 // Save
 exports.new = function (req, res) {
+
+    var currentYear = new Date();
+         req.body.Syear = currentYear.getFullYear();
+         req.body.Academicyear = currentYear.getFullYear(); 
+
     var data = new Data(req.body);
 
     data.save(function (err) {
