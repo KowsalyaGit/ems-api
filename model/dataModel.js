@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var dataSchema = mongoose.Schema({
-    Applno: String,
+    ApplnNo: String,
     Regno: String,
     firstName: String,
     lastName: String,
@@ -31,7 +31,7 @@ var dataSchema = mongoose.Schema({
     temporaryAddress: String,
     temporaryPincode: String,
     mobileNum: String,
-    aadhaarNum: String,
+    aadhaarNum: { type: Number, unique: true},
     emailID: String,
     mobileNumParent: String,
     bankAcNum: String,
@@ -79,17 +79,23 @@ var dataSchema = mongoose.Schema({
     partIIITotal: String,
     partIIIPercentage: String,
     hrSecCertNum: String,
-    //certificateFile: String,
+    certificateFile: String,
+    XIIMarkStatement: String,
+    CommunityCertificate: String,
+    Photograph: String,
     partILang: String,
     LanguageChoice: String,     
     courseChoice1: String,
     courseChoice2: String,
-    coutype: { type: String, default: "UG" },
+    coutype: String,
     Syear: Number,
-    Academicyear: Number,
-    SubmissionDate: { type: Date, default: Date.now() },
-    AdmissionDate: { type: Date, default: Date.now() },
+    Academicyear: String,
+    SubmissionDate: { type: Date, default: Date.now },
+    AdmissionDate: { type: Date, default: Date.now },
+   
 
+},{
+    timestamps : true
 });
 
 // Export Data model

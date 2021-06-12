@@ -95,7 +95,74 @@ exports.register = async (req, res) => {
 
     });
 };
+//forget Password
+exports.forgetPassword = async (req, res) => {
 
+User.findOne({emailId: req.body.emailId},async function(err,user){
+
+    if(err){
+        return res.json({           
+            status: "error",
+            message: "User does not exist",
+        });
+    }
+   
+if(user != null){
+        const pass = password.randomPassword();
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(pass, salt);
+
+        user.save(function (err) {
+            if (err) {
+                        return res.json({
+                            status: "error",
+                            message: err,
+                        });
+                    }
+                    const mailData = {
+                        from: process.env.SMTP_USER,  // sender address
+                          to: req.body.emailId,   // list of receivers
+                          subject: ' Your New Password Details ',
+                          text: 'Your New password is: ',
+                          html: '<b>Hey there, Welcome! </b>' +
+                                 '<br> <strong>Your New Password Details:</strong><br/>'+                     
+                                
+                                 '<br> Your New Password is: '+ pass +'<br/>',
+                        };
+            
+                    transporter.sendMail(mailData, function (err, info) {
+                        if(err){
+                           // console.log(err)
+                           res.json({           
+                            status: "error",
+                            message: err,
+                        }); 
+                        }
+                         
+                        else{
+                            //console.log(info);
+                            res.json({           
+                                status: "success",
+                                message: info,
+                            }); 
+                        }
+                           
+                    });           
+        
+        });
+       
+    }else{
+        return res.json({           
+            status: "error",
+            message: "User does not exist",
+        });
+    }
+     
+   
+
+});
+
+};
 //Login
 exports.login = async (req, res) => {
     const { userId, password } = req.body;
