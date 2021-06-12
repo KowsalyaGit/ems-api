@@ -6,6 +6,7 @@ var dataController = require('../controller/dataController');
 data.route('/')
     .get(dataController.index)
     .post(dataController.new);
+    
 data.route('/:id')
     .get(dataController.view)
     .put(dataController.update)
@@ -13,5 +14,6 @@ data.route('/:id')
 
 data.route('/download/:file')
     .get(dataController.download);
-
+data.route('/appNoMail/sentEmail')
+    .post(dataController.appNo);
 module.exports = data;
