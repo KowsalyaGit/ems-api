@@ -6,14 +6,15 @@ exports.saveFeeMaster = async (req, res) => {
         
     const FeeMasters = new FeeMaster({
     SNo : req.body.SNo,
+    Course : req.body.Course,
+    CNo : req.body.CNo,
     FeeType : req.body.FeeType,
     Description : req.body.Description,
-    Amount : req.body.Amount,
-    CNo : req.body.CNo,
-    FeeSem : req.body.FeeSem,
     Lateral : req.body.Lateral,
-    Academicyear : req.body.Academicyear,
     Head : req.body.Head,
+    FeeSem : req.body.FeeSem,
+    Academicyear : req.body.Academicyear,
+    Amount : req.body.Amount,
     
    });
    const fee = FeeMasters.save(function(err,data){

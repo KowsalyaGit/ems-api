@@ -1,6 +1,9 @@
 UserDetails = require('../model/userDetailsModel');
 require('dotenv').config();
 
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 //save userDetails
 exports.saveUserDetails = async (req, res) => {
    
@@ -60,7 +63,7 @@ exports.getIdUserDetails = async (req, res) => {
 }
 
 exports.updateUserDetails = async (req, res) => {
-    //console.log("prasanth");
+    
     const User = UserDetails.updateOne({UserID:req.body.UserID},{$set:{
     
     ID : req.body.ID,
@@ -96,4 +99,59 @@ exports.deleteUserDetails = async (req, res) => {
         }
         res.json(data);   
     });       
+}
+
+//AdminLogin
+exports.Adminlogin = async (req, res) => {
+    const { userId, password, role} = req.body;
+    
+     let userdetails = await UserDetails.findOne({
+        $or: [
+          { 'UserID': userId },
+          { 'Password': password },
+          { 'Role': role}
+        ]
+      });
+
+      if(!userdetails) {
+        return res.json({
+            status: "error",
+            message: "User does not exist",
+        });
+      }
+
+      //const isMatch = await bcrypt.compare(password, userdetails.Password);
+            
+      const isMatch = await (req.body.password == userdetails.Password);  
+
+      const rolenew = userdetails.userId ? userdetails[0].userId : userdetails.Role;
+
+      //console.log(rolenew);  
+
+                                                    
+      if(!isMatch) {
+        return res.json({
+            status: "error",
+            message: "Incorrect password",
+        });
+      }
+
+      const payload = {
+        userdetails: {
+            id: userdetails._id,
+            role: userdetails.role
+        }
+        };
+
+        jwt.sign( payload, process.env.JWT_SECRET, (err, token) => {
+            if (err) {
+                return res.json({
+                    status: "error",
+                    message: err,
+                });
+            }
+
+            return res.json({status: "success", token: token, role: rolenew});
+        });                  
+
 }

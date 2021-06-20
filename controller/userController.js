@@ -165,12 +165,13 @@ if(user != null){
 };
 //Login
 exports.login = async (req, res) => {
-    const { userId, password } = req.body;
+    const { userId, password, role } = req.body;
 
     let user = await User.findOne({
         $or: [
           { 'mobileNo': userId },
-          { 'emailId': userId }
+          { 'emailId': userId },
+          { 'Role': role}
         ]
       });
 
@@ -182,6 +183,10 @@ exports.login = async (req, res) => {
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
+
+      const rolenew = user.userId ? user[0].userId : user.role;
+
+      //console.log(rolenew);  
 
       if(!isMatch) {
         return res.json({
@@ -205,7 +210,7 @@ exports.login = async (req, res) => {
                 });
             }
 
-            return res.json({status: "success", token: token});
+            return res.json({status: "success", token: token, role: rolenew});
         });
 
 }

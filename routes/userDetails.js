@@ -8,5 +8,6 @@ userDetails.route('/getUserDetails').get(userDetailsController.getUserDetails);
 userDetails.route('/getIdUserDetails/:ID').get(userDetailsController.getIdUserDetails);
 userDetails.route('/updateUserDetails').put(userDetailsController.updateUserDetails);
 userDetails.route('/deleteUserDetails').delete(userDetailsController.deleteUserDetails);
+userDetails.route('/Adminlogin').post(userDetailsController.Adminlogin);
 
 module.exports = userDetails;

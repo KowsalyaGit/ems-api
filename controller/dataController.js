@@ -69,14 +69,14 @@ exports.appNo = function (req, res) {
 
         transporter.sendMail(mailData, function (err, info) {
             if(err){
-              console.log(err)
+             // console.log(err)
               res.json({
                 status: "error",
                 message: err,
               });
             }
             else{
-                console.log(info);
+               // console.log(info);
                 res.json({
                     status: "success",
                     data: info
@@ -128,7 +128,7 @@ exports.new = function (req, res) {
                 req.body. ApplnNo= twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '000' + lastappNo;
                 saveData();
             }else{
-                console.log(data.length);
+                //console.log(data.length);
                 req.body.ApplnNo = twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '0001'; 
                 saveData();
             }

@@ -2,14 +2,16 @@ var mongoose = require('mongoose');
 
 var FeeMasterSchema = mongoose.Schema({
     SNo : Number,
-    FeeType :{ type: String, unique: true},
-    Description : { type: String, unique: true},
+    Course: String,
+    CNo : Number,
+    FeeType : String,
+    Description : String,
+    Lateral : String,
+    Head  : String,
+    FeeSem : Number, 
+    Academicyear : String,
     Amount : { type: Number, default: 0 },
-    CNo : { type: Number, unique: true},
-    FeeSem : { type: Number, unique: true},
-    Lateral : String, 
-    Academicyear : { type: String, unique: true},
-    Head  : String,  
+    
    
     createdAt: {
         type: Date,
