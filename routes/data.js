@@ -16,4 +16,6 @@ data.route('/download/:file')
     .get(dataController.download);
 data.route('/appNoMail/sentEmail')
     .post(dataController.appNo);
+data.route('/ApplnNo/updateStatus')
+    .put(dataController.updateStatus);
 module.exports = data;
