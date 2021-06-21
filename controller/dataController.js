@@ -188,39 +188,24 @@ exports.update = function (req, res) {
 };
 
 exports.updateStatus = function (req, res) {
-    // Data.find(req.body.ApplnNo, function (err, data) {
-    //     if (err)
-    //         res.send(err);
-            
-    //     // data = Object.assign(data, req.body);
-
-    //     data.save(function (err) {
-    //         if (err)
-    //             res.json(err);
-    //         res.json({
-    //             status: 'success',
-    //             data: data
-    //         });
-    //     });
-    // });
 
     Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:{
         
-        // Sem : req.body.Sem,
-        // Section : req.body.Section,
-        // Admissionstatus : req.body.Admissionstatus,
-        // CNo : req.body.CNo,        
-        // Course : req.body.Course,
+        Sem : req.body.Sem,
+        Section : req.body.Section,
+        Admissionstatus : req.body.Admissionstatus,
+        CNo : req.body.CNo,        
+        Course : req.body.Course,
 
     }},function(err,data){
 
-        // if (err) {
-        //     return res.json({
-        //         status: "error",
-        //         message: err,
-        //     });
-        // }
-        // res.json(data); 
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data); 
     });
 
 };
