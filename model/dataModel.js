@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var dataSchema = mongoose.Schema({
-    ApplnNo: String,
+    ApplnNo:  { type: String, unique: true},
     Regno: String,
     firstName: String,
     lastName: String,
