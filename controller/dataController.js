@@ -63,7 +63,8 @@ exports.appNo = function (req, res) {
               subject: 'Admission Details',
               text: 'Your Application Number is: ',
               html: '<b>Hey there, Welcome! </b>' +
-                     '<br> <strong>Your Admission details:</strong><br/>'+                     
+                     '<br> <strong>Your Admission details:</strong><br/>'+
+                     '<br> <strong>Your Application has been submitted successfully !!! </strong><br/>'+                     
                      '<br> Your Application Number is: '+ req.body.appno
             };
 
@@ -115,6 +116,7 @@ exports.new = function (req, res) {
          var ayear=currentYear.getFullYear();
          var twoDigitYear = ayear.toString().substr(-2);
         //  req.body.ApplnNo = twoDigitYear + 'U' + '0001';
+        
 
         Data.find({coutype:req.body.coutype}).limit(1).sort({createdAt : -1}).lean().exec(function(err,data){
             if(err){
@@ -122,9 +124,10 @@ exports.new = function (req, res) {
             }
                
             if(data.length !=0){
+               
                 var appNoArray = data[0].ApplnNo.split(req.body.coutype == 'UG' ? 'U' : 'P');
                 var lastappNo = parseInt(appNoArray[appNoArray.length - 1]);
-                lastappNo ++;
+                lastappNo ++;               
                 req.body. ApplnNo= twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '000' + lastappNo;
                 saveData();
             }else{
