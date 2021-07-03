@@ -11,8 +11,6 @@ var FeeMasterSchema = mongoose.Schema({
     FeeSem : Number, 
     Academicyear : String,
     Amount : { type: Number, default: 0 },
-    
-   
     createdAt: {
         type: Date,
         default: Date.now()

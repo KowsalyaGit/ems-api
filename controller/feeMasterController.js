@@ -14,8 +14,7 @@ exports.saveFeeMaster = async (req, res) => {
     Head : req.body.Head,
     FeeSem : req.body.FeeSem,
     Academicyear : req.body.Academicyear,
-    Amount : req.body.Amount,
-    
+    Amount : req.body.Amount 
    });
    const fee = FeeMasters.save(function(err,data){
     if (err) {

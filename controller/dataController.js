@@ -115,8 +115,7 @@ exports.new = function (req, res) {
        
          var ayear=currentYear.getFullYear();
          var twoDigitYear = ayear.toString().substr(-2);
-        //  req.body.ApplnNo = twoDigitYear + 'U' + '0001';
-        
+        //  req.body.ApplnNo = twoDigitYear + 'U' + '0001';        
 
         Data.find({coutype:req.body.coutype}).limit(1).sort({createdAt : -1}).lean().exec(function(err,data){
             if(err){
@@ -170,6 +169,20 @@ exports.view = function (req, res) {
     });
 };
 
+exports.Application = function (req, res) {
+    Data.findOne({ApplnNo:req.params.ApplnNo}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
 // Update
 exports.update = function (req, res) {
     Data.findById(req.params.id, function (err, data) {
@@ -187,6 +200,21 @@ exports.update = function (req, res) {
                 data: data
             });
         });
+    });
+};
+
+exports.AppUpdateForm = function (req, res) {
+    Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:(req.body)
+        
+    },function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data); 
     });
 };
 
