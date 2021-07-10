@@ -182,6 +182,20 @@ exports.Application = function (req, res) {
        
     });
 };
+//getCourse
+exports.Courses = function (req, res) {
+    Data.find({courseChoice1:req.params.Course}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
 
 // Update
 exports.update = function (req, res) {

@@ -13,6 +13,8 @@ data.route('/:id')
     .post(dataController.upload);
 data.route('/ApplnNo/AllDetails/:ApplnNo')
     .get(dataController.Application);
+data.route('/Course/AllCourse/:Course')
+    .get(dataController.Courses);
 data.route('/download/:file')
     .get(dataController.download);
 data.route('/appNoMail/sentEmail')

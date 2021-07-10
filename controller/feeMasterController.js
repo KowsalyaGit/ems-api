@@ -30,7 +30,7 @@ exports.saveFeeMaster = async (req, res) => {
 exports.getFeeMaster = async (req, res) => {
 
     const getfee  = FeeMaster.find(function(err,data){
-
+     
         if (err) {
             return res.json({
                 status: "error",

@@ -93,7 +93,7 @@ exports.getIncome = async (req, res) => {
 
 exports.getIdIncome = async (req, res) => {
 
-    const getIdIncome  = Income.find({StuRollNo: req.params.StuRollNo},function(err,data){
+    const getIdIncome  = Income.find({FeeType: req.params.FeeType},function(err,data){
 
         if (err) {
             return res.json({
