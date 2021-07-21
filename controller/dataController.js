@@ -280,6 +280,22 @@ exports.Courses = function (req, res) {
     });
 };
 
+//UGCourse -- count
+exports.UGCourse = function (req, res) {
+    Data.find({coutype:"UG"},function (err, data) {
+        if (err) {
+            res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json({
+            status: "success",
+            data: data
+        });
+    });
+};
+
 // Update
 exports.update = function (req, res) {
     Data.findById(req.params.id, function (err, data) {

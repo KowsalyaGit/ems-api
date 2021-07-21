@@ -93,7 +93,7 @@ exports.getIncome = async (req, res) => {
 
 exports.getIdIncome = async (req, res) => {
 
-    const getIdIncome  = Income.find({FeeType: req.params.FeeType},function(err,data){
+    const getIdIncome  = Income.find({FeeType: req.params.FeeType , ReceiptDate:{$gte: req.params.FromDate,$lte: req.params.ToDate} },function(err,data){
 
         if (err) {
             return res.json({
@@ -102,7 +102,7 @@ exports.getIdIncome = async (req, res) => {
             });
         }
         res.json(data);
-
+        
     });
 }
 

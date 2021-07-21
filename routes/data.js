@@ -15,6 +15,10 @@ data.route('/ApplnNo/AllDetails/:ApplnNo')
     .get(dataController.Application);
 data.route('/Course/AllCourse/:Course')
     .get(dataController.Courses);
+
+data.route('/Course/UG')
+    .get(dataController.UGCourse);
+
 data.route('/download/:file')
     .get(dataController.download);
 data.route('/appNoMail/sentEmail')
