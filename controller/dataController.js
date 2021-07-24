@@ -115,84 +115,17 @@ exports.new = function (req, res) {
        
          var ayear=currentYear.getFullYear();
          var twoDigitYear = ayear.toString().substr(-2);
-        //  req.body.ApplnNo = twoDigitYear + 'U' + '0001';  
+        //  req.body.ApplnNo = twoDigitYear + 'U' + '0001';          
 
-        
-        //     Data.find({coutype:req.body.coutype}).limit(1).sort({ApplnNo: -1}).lean().exec(function(err,data){
-        //     if(err){
-        //         res.json(err)
-        //     }            
+        Data.find({coutype:req.body.coutype}).limit().sort({ApplnNo : -1}).lean().exec(function(err,data){
+          if (err) {
+            res.json({
+                status: "error",
+                message: err,
+            });
+           } 
 
-        //     if(data.length !=0){  
-        //         let max = 0;
-        //         max= data[0].ApplnNo;
-        //         var appNoArray = data[0].ApplnNo.split(req.body.coutype == 'UG' ? 'U' : 'P');
-        //         var lastappNo = parseInt(appNoArray[appNoArray.length - 1]);
-        //         max=lastappNo + 1;
-        //         var int_length = (''+max).length;
-        //         console.log(int_length);                       
-        //          if( req.body.coutype=='UG' ) { 
-        //              if (int_length==1)  {
-        //                 req.body. ApplnNo= twoDigitYear + 'U' + '000' + max;
-        //              }   
-        //              else if (int_length==2){
-        //                 req.body. ApplnNo= twoDigitYear + 'U' + '00' + max;
-        //              }   
-        //             else if (int_length==3){
-        //                 req.body. ApplnNo= twoDigitYear + 'U' + '0' + max;
-        //             }  
-        //             else if (int_length==3){
-        //                 req.body. ApplnNo= twoDigitYear + 'U' + '' + max;
-        //             }  
-
-        //          }          
-        //          else if ( req.body.coutype=='PG' ){  
-        //              if (int_length==1)  {
-        //                 req.body. ApplnNo= twoDigitYear + 'P' + '000' + max;
-        //              }   
-        //              else if (int_length==2){
-        //                 req.body. ApplnNo= twoDigitYear + 'P' + '00' + max;
-        //              }   
-        //             else if (int_length==3){
-        //                 req.body. ApplnNo= twoDigitYear + 'P' + '0' + max;
-        //             }
-        //             else if (int_length==3){
-        //                 req.body. ApplnNo= twoDigitYear + 'U' + '' + max;
-        //             }       
-        //          }    
-        //     }  
-        //     else {
-        //         req.body.ApplnNo = twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '0001'; 
-        //         saveData();
-        //     }
-                
-        // });
-
-        // Data.find({coutype:req.body.coutype}).limit(1).sort({createdAt : -1}).lean().exec(function(err,data){
-        //     if(err){
-        //         res.json(err)
-        //     }
-                            
-        //     if(data.length !=0){           
-                
-        //         var appNoArray = data[0].ApplnNo.split(req.body.coutype == 'UG' ? 'U' : 'P');
-        //         var lastappNo = parseInt(appNoArray[appNoArray.length - 1]);
-        //         lastappNo ++;               
-        //         req.body. ApplnNo= twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '000' + lastappNo;
-        //         saveData();
-        //     }else{
-        //         //console.log(data.length);
-        //         req.body.ApplnNo = twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '0001'; 
-        //         saveData();
-        //     }
-        // });
-
-        Data.find({coutype:req.body.coutype}).limit(1).sort({ApplnNo : -1}).lean().exec(function(err,data){
-            if(err){
-                res.json(err)
-            }
-                            
-            if(data.length !=0){           
+                if(data.length !=0){           
                 
                 var appNoArray = data[0].ApplnNo.split(req.body.coutype == 'UG' ? 'U' : 'P');
                 var lastappNo = parseInt(appNoArray[appNoArray.length - 1]);
@@ -211,13 +144,77 @@ exports.new = function (req, res) {
                         req.body. ApplnNo= twoDigitYear +  (req.body.coutype == 'UG' ? 'U' : 'P')  + '' + lastappNo;
                     }                        
                 //req.body. ApplnNo= twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '000' + lastappNo;
-                saveData();
+               
             }else{
                 //console.log(data.length);
-                req.body.ApplnNo = twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '0001'; 
-                saveData();
+                req.body.ApplnNo = twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '0001';
             }
-        });
+
+
+        var appn ;
+        var flag = 0;
+        appn =  req.body.ApplnNo                    
+        if(data.length !=0){                                                      
+              for(i = 0; i < data.length; i++) {                  
+                  var appno = data[i].ApplnNo;
+                  if (appno == appn) {
+                      flag++;
+                  } 
+              }
+
+              function LoopData(){
+                  flag = 0;
+                  if(data.length !=0){ 
+                  for(i = 0; i < data.length; i++) {                  
+                  var appno = data[i].ApplnNo;
+                  if (appno == appn) {
+                      flag++;
+                  } 
+                 }
+                }
+              }
+
+            if (flag == 0 && data.length !=0) {
+                    saveData()
+            } else if (flag != 0 && data.length !=0){
+                    appn = appn.split(req.body.coutype == 'UG' ? 'U' : 'P');
+                    var lastappNo = parseInt(appn[appn.length - 1]);
+                    lastappNo ++;    
+                    var int_length = (''+lastappNo).length;                 
+                     if (int_length==1)  {
+                        req.body. ApplnNo= twoDigitYear +  (req.body.coutype == 'UG' ? 'U' : 'P')  + '000' + lastappNo;
+                     }   
+                     else if (int_length==2){
+                        req.body. ApplnNo= twoDigitYear +  (req.body.coutype == 'UG' ? 'U' : 'P')  + '00' + lastappNo;
+                     }   
+                     else if (int_length==3){
+                        req.body. ApplnNo= twoDigitYear +  (req.body.coutype == 'UG' ? 'U' : 'P')  + '0' + lastappNo;
+                    }  
+                     else if (int_length==4){
+                        req.body. ApplnNo= twoDigitYear +  (req.body.coutype == 'UG' ? 'U' : 'P')  + '' + lastappNo;
+                    }  
+                    if (flag != 0 && data.length !=0) {
+                        Data.find({coutype:req.body.coutype}).limit().sort({ApplnNo : -1}).lean().exec(function(err,data){
+                            if (err) {
+                            res.json({
+                            status: "error",
+                            message: err,
+                            });
+                           } 
+                        appn =  req.body.ApplnNo   
+                        if(data.length !=0){ 
+                            LoopData();
+                            //goto loop1;  
+                        } 
+                      });                                               
+                    }                                                
+                    //saveData();         
+            }
+         }  else if(data.length ==0){                    
+                    req.body.ApplnNo = twoDigitYear + (req.body.coutype == 'UG' ? 'U' : 'P') + '0001'; 
+                    saveData(); 
+            }                       
+     });
    function saveData(){
     var data = new Data(req.body);
     data.save(function (err) {
