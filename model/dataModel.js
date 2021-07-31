@@ -109,8 +109,8 @@ var dataSchema = mongoose.Schema({
     Section: { type: String, default: " " },
     Sem: { type: Number, default: 0 },
     SubmissionDate: { type: Date, default: Date.now },
-    AdmissionDate: { type: Date, default: Date.now },
-   
+    AdmissionDate: { type: Date, default: Date.now},
+    Noofpaper: Number,
 
 },{
     timestamps : true

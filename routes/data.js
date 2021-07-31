@@ -13,6 +13,11 @@ data.route('/:id')
     .post(dataController.upload);
 data.route('/ApplnNo/AllDetails/:ApplnNo')
     .get(dataController.Application);
+data.route('/ApplicationSales/:coutype/:FromDate/:ToDate')
+    .get(dataController.ApplicationSales);
+data.route('/AllCourse/:Course/:FromDate/:ToDate')
+    .get(dataController.AllCourse);   
+
 data.route('/Course/AllCourse/:Course')
     .get(dataController.Courses);
 
