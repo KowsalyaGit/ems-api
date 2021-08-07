@@ -77,7 +77,7 @@ exports.updateFeeList = async (req, res) => {
 
 exports.deleteFeeList = async (req, res) => {
 
-    const DeleteFeeList = FeeList.deleteOne({FeeNo:req.body.FeeNo},function(err,data){
+    const DeleteFeeList = FeeList.deleteOne({FeeNo:req.params.FeeNo},function(err,data){
         if (err) {
             return res.json({
                 status: "error",
@@ -85,5 +85,5 @@ exports.deleteFeeList = async (req, res) => {
             });
         }
         res.json(data);   
-    });       
+    });
 }
