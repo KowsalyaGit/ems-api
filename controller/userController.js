@@ -90,7 +90,7 @@ exports.register = async (req, res) => {
                 
             }
 
-            return res.json({status: "success", token: token});
+            return res.json({status: "success", token: token, mobileNo : mobileNo, emailId : emailId, pass : pass});
         });
 
     });
