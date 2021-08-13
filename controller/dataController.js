@@ -402,6 +402,20 @@ exports.AppUpdateForm = function (req, res) {
     });
 };
 
+exports.deleteData = function (req, res) {
+    
+    Data.deleteOne({ApplnNo:req.params.ApplnNo},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data); 
+    });
+};
+
 exports.updateStatus = function (req, res) {
 
     Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:{
