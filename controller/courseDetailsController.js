@@ -71,8 +71,8 @@ exports.getIdCourseDetails = async (req,res) => {
 
 exports.updateCourseDetails = async (req, res) => {
     
-    const course = CourseDetails.updateOne({CNo:req.body.CNo},{$set:{
-    Sno : req.body.Sno,   
+    const course = CourseDetails.updateOne({Sno:req.body.Sno},{$set:{
+    CNo : req.body.CNo,   
     Course : req.body.Course,
     Branch : req.body.Branch,
     MajorSubject : req.body.MajorSubject,
@@ -80,20 +80,20 @@ exports.updateCourseDetails = async (req, res) => {
     CouType : req.body.CouType,
     Intake : req.body.Intake,
     AddlSeats : req.body.AddlSeats,
-    OCM : req.body.OCM,
-    BCM : req.body.BCM,
-    MBCM : req.body.MBCM,
-    SCM : req.body.SCM,
-    STM : req.body.STM,
-    DNCM : req.body.DNCM,
-    OCF : req.body.OCF,
-    BCF : req.body.BCF,
-    MBCF : req.body.MBCF,
-    SCF : req.body.SCF,
-    STF : req.body.STF,
-    DNCF : req.body.DNCF,
-    GoiQuota : req.body.GoiQuota,
-    MgtQuota : req.body.MgtQuota, 
+    // OCM : req.body.OCM,
+    // BCM : req.body.BCM,
+    // MBCM : req.body.MBCM,
+    // SCM : req.body.SCM,
+    // STM : req.body.STM,
+    // DNCM : req.body.DNCM,
+    // OCF : req.body.OCF,
+    // BCF : req.body.BCF,
+    // MBCF : req.body.MBCF,
+    // SCF : req.body.SCF,
+    // STF : req.body.STF,
+    // DNCF : req.body.DNCF,
+    // GoiQuota : req.body.GoiQuota,
+    // MgtQuota : req.body.MgtQuota, 
     }},function(err,data){
 
         if (err) {
@@ -109,7 +109,7 @@ exports.updateCourseDetails = async (req, res) => {
 
 exports.deleteCourseDetails = async (req, res) => {
 
-    const DeleteCourse = CourseDetails.deleteOne({CNo:req.body.CNo},function(err,data){
+    const DeleteCourse = CourseDetails.deleteOne({Sno:req.params.Sno},function(err,data){
         if (err) {
             return res.json({
                 status: "error",

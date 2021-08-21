@@ -404,7 +404,7 @@ exports.AppUpdateForm = function (req, res) {
 
 exports.deleteData = function (req, res) {
     
-    Data.deleteOne({ApplnNo:req.params.ApplnNo},function(err,data){
+    Data.deleteOne({aadhaarNum:req.params.aadhaarNum},function(err,data){
 
         if (err) {
             return res.json({

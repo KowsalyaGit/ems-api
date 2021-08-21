@@ -16,9 +16,10 @@ exports.saveUserDetails = async (req, res) => {
     Qualification : req.body.Qualification,
     Designation : req.body.Designation,
     Department : req.body.Department,
+    Contact : req.body.Contact,
     Role : req.body.Role,
     Remark  : req.body.Remark,
-    
+
    });
    const addUser = userDetails.save(function(err,data){
     if (err) {
@@ -64,15 +65,16 @@ exports.getIdUserDetails = async (req, res) => {
 
 exports.updateUserDetails = async (req, res) => {
     
-    const User = UserDetails.updateOne({UserID:req.body.UserID},{$set:{
+    const User = UserDetails.updateOne({ID:req.body.ID},{$set:{
     
-    ID : req.body.ID,
+    UserID : req.body.UserID,
     //UserID : req.body.UserID,
     Password : req.body.Password,
     UserName : req.body.UserName,
     Qualification : req.body.Qualification,
     Designation : req.body.Designation,
     Department : req.body.Department,
+    Contact : req.body.Contact,
     Role : req.body.Role,
     Remark  : req.body.Remark, 
     }},function(err,data){
@@ -90,7 +92,7 @@ exports.updateUserDetails = async (req, res) => {
 
 exports.deleteUserDetails = async (req, res) => {
 
-    const DeleteCourse = UserDetails.deleteOne({UserID:req.body.UserID},function(err,data){
+    const DeleteCourse = UserDetails.deleteOne({ID:req.params.ID},function(err,data){
         if (err) {
             return res.json({
                 status: "error",

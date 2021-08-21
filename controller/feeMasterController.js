@@ -44,7 +44,7 @@ exports.getFeeMaster = async (req, res) => {
 
 exports.getIdFeeMaster = async (req,res) => {
 
-    const getIdFee = FeeMaster.find({CNo: req.params.CNo},function(err,data){
+    const getIdFee = FeeMaster.find({SNo: req.params.SNo},function(err,data){
 
         if(err){
             return res.json({
@@ -58,9 +58,9 @@ exports.getIdFeeMaster = async (req,res) => {
 
 exports.updateFeeMaster = async (req, res) => {
     
-    const updateFee = FeeMaster.updateOne({CNo:req.body.CNo},{$set:{
+    const updateFee = FeeMaster.updateOne({SNo:req.body.SNo},{$set:{
         
-        SNo : req.body.SNo,
+        CNo : req.body.CNo,
         FeeType : req.body.FeeType,
         Description : req.body.Description,
         Amount : req.body.Amount,        
@@ -84,7 +84,7 @@ exports.updateFeeMaster = async (req, res) => {
 
 exports.deleteFeeMaster = async (req, res) => {
 
-    const deleteFee = FeeMaster.deleteOne({CNo:req.body.CNo},function(err,data){
+    const deleteFee = FeeMaster.deleteOne({SNo:req.params.SNo},function(err,data){
         if (err) {
             return res.json({
                 status: "error",

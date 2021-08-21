@@ -7,6 +7,6 @@ income.route('/saveIncome').post(incomeController.saveIncome);
 income.route('/getIncome').get(incomeController.getIncome);
 income.route('/getIdIncome/:FeeType/:FromDate/:ToDate').get(incomeController.getIdIncome);
 income.route('/updateIncome').put(incomeController.updateIncome);
-income.route('/deleteIncome').delete(incomeController.deleteIncome);
+income.route('/deleteIncome/:RNo').delete(incomeController.deleteIncome);
 
 module.exports = income;

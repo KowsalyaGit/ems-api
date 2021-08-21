@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var FeeMasterSchema = mongoose.Schema({
-    SNo : Number,
+    
+    SNo :{ type: Number, unique: true},
     Course: String,
     CNo : Number,
     FeeType : String,

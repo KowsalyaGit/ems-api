@@ -32,6 +32,6 @@ data.route('/ApplnNo/updateStatus')
     .put(dataController.updateStatus);
 data.route('/App/updateForm')
     .put(dataController.AppUpdateForm);
-data.route('/deleteData/:ApplnNo')
+data.route('/deleteData/:aadhaarNum')
     .delete(dataController.deleteData);
 module.exports = data;
