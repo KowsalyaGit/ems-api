@@ -416,6 +416,22 @@ exports.deleteData = function (req, res) {
     });
 };
 
+//Attendance
+exports.Attendance = function (req, res) {
+    Data.find({Course:req.params.Course,Section:req.params.Section,Sem:req.params.Semester}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+
 exports.updateStatus = function (req, res) {
 
     Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:{

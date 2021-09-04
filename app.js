@@ -18,6 +18,7 @@ var courseRouter = require('./routes/course');
 var feeMasterRouter = require('./routes/feeMaster');
 var feeListRouter = require('./routes/feeList');
 var incomeRouter = require('./routes/income');
+var attendanceRouter = require('./routes/attendance');
 require('dotenv').config()
 var app = express();
 app.use(cors());
@@ -64,6 +65,7 @@ app.use('/userDetails', userDetailsRouter);
 app.use('/feeMaster', feeMasterRouter);
 app.use('/feeList', feeListRouter);
 app.use('/income', incomeRouter);
+app.use('/attendance', attendanceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

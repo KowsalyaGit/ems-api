@@ -21,6 +21,9 @@ data.route('/AllCourse/:Course/:FromDate/:ToDate')
 data.route('/Course/AllCourse/:Course')
     .get(dataController.Courses);
 
+data.route('/Attendance/:Course/:Section/:Semester')
+    .get(dataController.Attendance);
+
 data.route('/Course/UG')
     .get(dataController.UGCourse);
 
