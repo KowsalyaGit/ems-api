@@ -18,6 +18,9 @@ data.route('/ApplicationSales/:coutype/:FromDate/:ToDate')
 data.route('/AllCourse/:Course/:FromDate/:ToDate')
     .get(dataController.AllCourse);   
 
+data.route('/Course/AllCourse/:Course/:Semester')
+    .get(dataController.AllCourses);
+    
 data.route('/Course/AllCourse/:Course')
     .get(dataController.Courses);
 

@@ -46,6 +46,21 @@ exports.saveAttendance = async (req, res) => {
 }
 
 
+exports.getDatewiseAttendance = async (req, res) => {
+
+     Attendance.find({Course: req.params.Course ,AType: req.params.AType, ADate:{$gte: req.params.FromDate,$lte: req.params.ToDate} },function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+}
+
 // exports.getFeeList = async (req, res) => {
 
 //     const getFeeList  = FeeList.find(function(err,data){

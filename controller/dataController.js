@@ -337,8 +337,22 @@ if(req.params.Course !== "All"){
 
 
 //getCourse
+exports.AllCourses = function (req, res) {
+    Data.find({Course:req.params.Course,Sem:req.params.Semester}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
 exports.Courses = function (req, res) {
-    Data.find({courseChoice1:req.params.Course}, function (err, data) {
+    Data.find({Course:req.params.Course}, function (err, data) {
         if(err){
             res.json(err)
         }
