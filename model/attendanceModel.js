@@ -27,6 +27,7 @@ var attendanceSchema = mongoose.Schema({
     Section : String,
     Semester : Number,
     Session : String,
+    CouType : String,
     AType : { type: String, default: "Present" },
     
     createdAt: {

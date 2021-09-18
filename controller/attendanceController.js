@@ -30,6 +30,7 @@ exports.saveAttendance = async (req, res) => {
     Session : req.body.Session,
     Mobile : req.body.mobileNum,
     Course : req.body.Course,
+    CouType : req.body.CouType,
     IsHosteller : req.body.hostelReq,
     AType : req.body.Type,
 
@@ -46,9 +47,9 @@ exports.saveAttendance = async (req, res) => {
 }
 
 
-exports.getDatewiseAttendance = async (req, res) => {
+exports.getCoursewiseAttendance = async (req, res) => {
 
-     Attendance.find({Course: req.params.Course ,AType: req.params.AType, ADate:{$gte: req.params.FromDate,$lte: req.params.ToDate} },function(err,data){
+     Attendance.find({Course: req.params.Course ,AType: req.params.AType,Semester: req.params.Semester,Section: req.params.Section,Session: req.params.Session,ADate:{$gte: req.params.FromDate,$lte: req.params.ToDate} },function(err,data){
 
         if (err) {
             return res.json({
@@ -60,6 +61,31 @@ exports.getDatewiseAttendance = async (req, res) => {
         
     });
 }
+
+
+exports.getOverAllAttendance = async (req, res) => {
+
+
+   //  Attendance.find({CouType: req.params.CouType,AType: req.params.AType,Session: req.params.Session,ADate:{$gte: req.params.FromDate,$lte: req.params.ToDate} },function(err,data){
+
+var query;
+if(req.params.CouType !== "All"){    
+    query = {CouType: req.params.CouType,AType: req.params.AType,Session: req.params.Session,ADate:{$gte: req.params.FromDate,$lte: req.params.ToDate}}
+}else{
+    query = {AType: req.params.AType,Session: req.params.Session,ADate:{$gte: req.params.FromDate,$lte: req.params.ToDate}}    
+}
+Attendance.find(query,function(err,data){
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+}
+
 
 // exports.getFeeList = async (req, res) => {
 

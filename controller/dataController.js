@@ -267,29 +267,6 @@ exports.Application = function (req, res) {
 
 exports.ApplicationSales = function (req, res) {
 
-    // Data.aggregate([
-    //     {
-    //         "$facet":{
-    //             "UGtotal":[{ "$match":{
-    //                 "coutype" :"UG",
-
-    //                 //"AdmissionDate":{ "$cond": [ { "$lt": ["$value", "2021-07-25" ] }]}                  
-       
-    //                 //"AdmissionDate":{"$cond": { if: { "$gte": ["2021-07-25" ]}}}     
-    //             }},{"$count":"UGtotal"}
-    //             ]
-    //     }
-    //     }],function(err,data){
-    //             if(err){
-    //         res.json(err)
-    //     }
-    //   console.log(data)
-    //     res.json({
-    //         status: 'success',
-    //         data: data
-    //     });
-        
-    // });
     var query;
         if(req.params.coutype !== "All"){
             query =  {coutype: req.params.coutype , AdmissionDate:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }
