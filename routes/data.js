@@ -11,7 +11,7 @@ data.route('/:id')
     .get(dataController.view)
     .put(dataController.update)
     .post(dataController.upload);
-data.route('/ApplnNo/AllDetails/:ApplnNo')
+data.route('/ApplnNo/AllDetails/:aadhaarNum')
     .get(dataController.Application);
 data.route('/ApplicationSales/:coutype/:FromDate/:ToDate')
     .get(dataController.ApplicationSales);
@@ -36,6 +36,8 @@ data.route('/appNoMail/sentEmail')
     .post(dataController.appNo);
 data.route('/ApplnNo/updateStatus')
     .put(dataController.updateStatus);
+data.route('/CTrans/CourseTransfer')
+    .put(dataController.CourseTransfer);
 data.route('/App/updateForm')
     .put(dataController.AppUpdateForm);
 data.route('/deleteData/:aadhaarNum')

@@ -111,6 +111,9 @@ var dataSchema = mongoose.Schema({
     SubmissionDate: { type: Date, default: Date.now },
     AdmissionDate: { type: Date, default: Date.now},
     Noofpaper: Number,
+    TransferFrom:  { type: String, default: " " },
+    TransferFromCNo:  { type: Number, default: 0 },
+    DateOfTransfer: { type: String, default: " " },
 
 },{
     timestamps : true

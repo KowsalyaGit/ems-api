@@ -36,7 +36,7 @@ exports.getFeeMaster = async (req, res) => {
                 status: "error",
                 message: err,
             });
-        }
+        } 
         res.json(data);
 
     });
@@ -44,7 +44,7 @@ exports.getFeeMaster = async (req, res) => {
 
 exports.getIdFeeMaster = async (req,res) => {
 
-    const getIdFee = FeeMaster.find({SNo: req.params.SNo},function(err,data){
+    const getIdFee = FeeMaster.find({CNo: req.params.CNo},function(err,data){
 
         if(err){
             return res.json({
@@ -55,6 +55,21 @@ exports.getIdFeeMaster = async (req,res) => {
         res.json(data);
     });
 }
+
+exports.getTransferFromCNo = async (req,res) => {
+
+    const getTransferFromCNo = FeeMaster.find({CNo: req.params.TransferFromCNo},function(err,data){
+
+        if(err){
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+    });
+}
+
 
 exports.updateFeeMaster = async (req, res) => {
     

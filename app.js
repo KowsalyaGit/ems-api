@@ -19,6 +19,10 @@ var feeMasterRouter = require('./routes/feeMaster');
 var feeListRouter = require('./routes/feeList');
 var incomeRouter = require('./routes/income');
 var attendanceRouter = require('./routes/attendance');
+var TcRouter = require('./routes/Tc');
+var BonafideRouter = require('./routes/Bonafide');
+var FeeEstimateRouter = require('./routes/FeeEstimate');
+
 require('dotenv').config()
 var app = express();
 app.use(cors());
@@ -41,10 +45,6 @@ mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true 
 var db = mongoose.connection;
 
 
-
-
- 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -66,6 +66,9 @@ app.use('/feeMaster', feeMasterRouter);
 app.use('/feeList', feeListRouter);
 app.use('/income', incomeRouter);
 app.use('/attendance', attendanceRouter);
+app.use('/Tc', TcRouter);
+app.use('/Bonafide', BonafideRouter);
+app.use('/FeeEstimate', FeeEstimateRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

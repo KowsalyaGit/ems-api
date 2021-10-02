@@ -250,7 +250,7 @@ exports.view = function (req, res) {
 };
 
 exports.Application = function (req, res) {
-    Data.findOne({ApplnNo:req.params.ApplnNo}, function (err, data) {
+    Data.findOne({aadhaarNum:req.params.aadhaarNum}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -315,7 +315,7 @@ if(req.params.Course !== "All"){
 
 //getCourse
 exports.AllCourses = function (req, res) {
-    Data.find({Course:req.params.Course,Sem:req.params.Semester}, function (err, data) {
+    Data.find({Course:req.params.Course,Sem:req.params.Semester,Admissionstatus:"Confirm"}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -379,7 +379,7 @@ exports.update = function (req, res) {
 };
 
 exports.AppUpdateForm = function (req, res) {
-    Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:(req.body)
+    Data.updateOne({aadhaarNum:req.body.aadhaarNum},{$set:(req.body)
         
     },function(err,data){
 
@@ -432,6 +432,30 @@ exports.updateStatus = function (req, res) {
         Admissionstatus : req.body.Admissionstatus,
         CNo : req.body.CNo,        
         Course : req.body.Course,
+
+    }},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data); 
+    });
+
+};
+
+
+exports.CourseTransfer = function (req, res) {
+
+    Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:{  
+             
+        Course : req.body.Course,
+        CNo : req.body.CNo,   
+        TransferFrom : req.body.TransferFrom,
+        TransferFromCNo : req.body.TransferFromCNo,
+        DateOfTransfer : req.body.DateOfTransfer,
 
     }},function(err,data){
 
