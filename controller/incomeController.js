@@ -14,7 +14,7 @@ exports.saveIncome = async (req, res) => {
             saveData();
         }
         else{
-            //console.log(data.length);
+           
             req.body.RNo = 1; 
             saveData();
         }
@@ -22,6 +22,7 @@ exports.saveIncome = async (req, res) => {
     function saveData(){
     const income = new Income({
      
+
     RNo : req.body.RNo,
     ApplnNo : req.body.ApplnNo,
     Name : req.body.Name,

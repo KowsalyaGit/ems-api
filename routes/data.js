@@ -11,7 +11,7 @@ data.route('/:id')
     .get(dataController.view)
     .put(dataController.update)
     .post(dataController.upload);
-data.route('/ApplnNo/AllDetails/:aadhaarNum')
+data.route('/ApplnNo/AllDetails/:ApplnNo')
     .get(dataController.Application);
 data.route('/ApplicationSales/:coutype/:FromDate/:ToDate')
     .get(dataController.ApplicationSales);

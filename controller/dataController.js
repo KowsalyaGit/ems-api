@@ -250,7 +250,7 @@ exports.view = function (req, res) {
 };
 
 exports.Application = function (req, res) {
-    Data.findOne({aadhaarNum:req.params.aadhaarNum}, function (err, data) {
+    Data.findOne({ApplnNo:req.params.ApplnNo}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -379,7 +379,7 @@ exports.update = function (req, res) {
 };
 
 exports.AppUpdateForm = function (req, res) {
-    Data.updateOne({aadhaarNum:req.body.aadhaarNum},{$set:(req.body)
+    Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:(req.body)
         
     },function(err,data){
 
