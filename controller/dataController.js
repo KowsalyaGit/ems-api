@@ -456,6 +456,9 @@ exports.CourseTransfer = function (req, res) {
         TransferFrom : req.body.TransferFrom,
         TransferFromCNo : req.body.TransferFromCNo,
         DateOfTransfer : req.body.DateOfTransfer,
+        FromCourseTotal : req.body.FromCourseTotal,
+        ToCourseTotal : req.body.ToCourseTotal,
+        DiffAmount : req.body.DiffAmount,
 
     }},function(err,data){
 

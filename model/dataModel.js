@@ -114,6 +114,9 @@ var dataSchema = mongoose.Schema({
     TransferFrom:  { type: String, default: " " },
     TransferFromCNo:  { type: Number, default: 0 },
     DateOfTransfer: { type: String, default: " " },
+    FromCourseTotal: { type: Number, default:0},
+    ToCourseTotal:{ type: Number, default: 0},
+    DiffAmount: { type: Number, default:0}
 
 },{
     timestamps : true
