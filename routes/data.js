@@ -20,9 +20,15 @@ data.route('/AllCourse/:Course/:FromDate/:ToDate')
 
 data.route('/Course/AllCourse/:Course/:Semester')
     .get(dataController.AllCourses);
+
+data.route('/UniversityAdmission/:Academicyear/:Course')
+    .get(dataController.UniversityAdmission);
     
 data.route('/Course/AllCourse/:Course')
     .get(dataController.Courses);
+   
+data.route('/Transferlist/:Academicyear/:coutype')
+    .get(dataController.Translist);
 
 data.route('/Attendance/:Course/:Section/:Semester')
     .get(dataController.Attendance);

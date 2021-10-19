@@ -312,10 +312,38 @@ if(req.params.Course !== "All"){
     });
 };
 
+exports.Translist = function (req, res) {
+    Data.find({Academicyear:req.params.Academicyear,coutype:req.params.coutype,TransferFrom:{$ne:" "}}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
 
 //getCourse
 exports.AllCourses = function (req, res) {
     Data.find({Course:req.params.Course,Sem:req.params.Semester,Admissionstatus:"Confirm"}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+
+exports.UniversityAdmission = function (req, res) {
+    Data.find({Course:req.params.Course,Academicyear:req.params.Academicyear,Admissionstatus:"Confirm"}, function (err, data) {
         if(err){
             res.json(err)
         }
