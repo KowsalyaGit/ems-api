@@ -4,6 +4,10 @@ require('dotenv').config();
 //save 
 exports.saveTc = async (req, res) => {
 
+         var currentYear = new Date();       
+         var ayear=currentYear.getFullYear();
+         var twoDigitYear = ayear.toString().substr(-2);
+
     Tc.find().limit(1).sort({createdAt : -1}).lean().exec(function(err,data){
         if(err){
             res.json(err)
@@ -15,7 +19,7 @@ exports.saveTc = async (req, res) => {
         }
         else{
             //console.log(data.length);
-            req.body.TcNo = 1; 
+            req.body.TcNo = twoDigitYear + "0001"; 
             saveData();
         }
     });

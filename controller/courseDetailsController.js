@@ -40,6 +40,38 @@ exports.saveCourseDetails = async (req, res) => {
 });
 }
 
+exports.getUGCourseDetails = async (req, res) => {
+
+    CourseDetails.find({CouType:"UG"},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+
+    });
+}
+
+
+exports.getPGCourseDetails = async (req, res) => {
+
+    CourseDetails.find({CouType:"PG"},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+
+    });
+}
+
+
 exports.getCourseDetails = async (req, res) => {
 
     const course  = CourseDetails.find(function(err,data){
