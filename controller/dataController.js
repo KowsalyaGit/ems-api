@@ -263,6 +263,102 @@ exports.Application = function (req, res) {
     });
 };
 
+
+exports.BcCount = function (req, res) {
+
+    Data.countDocuments({community:"BC",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
+
+ 
+exports.OcCount = function (req, res) {
+
+    Data.countDocuments({community:"OC",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
+
+
+exports.MbcCount = function (req, res) {
+
+    Data.countDocuments({community:"MBC",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
+
+ 
+exports.ScCount = function (req, res) {
+
+    Data.countDocuments({community:"SC",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
+
+ exports.ScaCount = function (req, res) {
+
+    Data.countDocuments({community:"SCA",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
+
+
+ exports.TotalCount = function (req, res) {
+
+    Data.countDocuments({coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
+
+
 //AppSales
 
 exports.ApplicationSales = function (req, res) {
@@ -314,6 +410,48 @@ if(req.params.Course !== "All"){
 
 exports.Translist = function (req, res) {
     Data.find({Academicyear:req.params.Academicyear,coutype:req.params.coutype,TransferFrom:{$ne:" "}}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+exports.StudentNameList = function (req, res) {
+     var stdlist;
+   
+    if (req.params.Course == "All" , req.params.Admissionstatus == "All"){
+         stdlist = {Academicyear:req.params.Academicyear,Sem:req.params.Semester}
+    }
+    else if (req.params.Course != "All",req.params.Admissionstatus != "All"){
+        stdlist =  {Course:req.params.Course,Admissionstatus:req.params.Admissionstatus,Academicyear:req.params.Academicyear,Sem:req.params.Semester}
+    }
+    else if ( req.params.Course == "All",req.params.Admissionstatus != "All"){
+          stdlist = {Admissionstatus:req.params.Admissionstatus,Academicyear:req.params.Academicyear,Sem:req.params.Semester}
+     }
+    else if (req.params.Course != "All",req.params.Admissionstatus == "All"){
+        stdlist = {Course:req.params.Course,Academicyear:req.params.Academicyear,Sem:req.params.Semester}
+    }
+    Data.find(stdlist, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+exports.StudentFullData = function (req, res) {
+    Data.find({Academicyear:req.params.Academicyear}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -487,6 +625,25 @@ exports.CourseTransfer = function (req, res) {
         FromCourseTotal : req.body.FromCourseTotal,
         ToCourseTotal : req.body.ToCourseTotal,
         DiffAmount : req.body.DiffAmount,
+
+    }},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data); 
+    });
+
+};
+
+exports.SectionAlertment = function (req, res) {
+
+    Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:{  
+             
+        Section : req.body.Section,
 
     }},function(err,data){
 

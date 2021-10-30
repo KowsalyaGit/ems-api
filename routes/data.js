@@ -13,8 +13,34 @@ data.route('/:id')
     .post(dataController.upload);
 data.route('/ApplnNo/AllDetails/:ApplnNo')
     .get(dataController.Application);
+
+data.route('/BcCount/:coutype/:Course')
+    .get(dataController.BcCount);
+
+data.route('/MbcCount/:coutype/:Course')
+    .get(dataController.MbcCount);
+
+data.route('/OcCount/:coutype/:Course')
+    .get(dataController.OcCount);
+
+data.route('/ScCount/:coutype/:Course')
+    .get(dataController.ScCount);
+    
+data.route('/ScaCount/:coutype/:Course')
+    .get(dataController.ScaCount);
+ 
+data.route('/TotalCount/:coutype/:Course')
+    .get(dataController.TotalCount);
+
+data.route('/StudentNameList/:Course/:Admissionstatus/:Academicyear/:Semester')
+    .get(dataController.StudentNameList);
+
+data.route('/StudentFullData/:Academicyear')
+    .get(dataController.StudentFullData);
+
 data.route('/ApplicationSales/:coutype/:FromDate/:ToDate')
     .get(dataController.ApplicationSales);
+
 data.route('/AllCourse/:Course/:FromDate/:ToDate')
     .get(dataController.AllCourse);   
 
@@ -46,6 +72,8 @@ data.route('/CTrans/CourseTransfer')
     .put(dataController.CourseTransfer);
 data.route('/App/updateForm')
     .put(dataController.AppUpdateForm);
+data.route('/Section/Alertment')
+    .put(dataController.SectionAlertment);
 data.route('/deleteData/:aadhaarNum')
     .delete(dataController.deleteData);
 module.exports = data;
