@@ -74,6 +74,8 @@ data.route('/App/updateForm')
     .put(dataController.AppUpdateForm);
 data.route('/Section/Alertment')
     .put(dataController.SectionAlertment);
+data.route('/TcUpdate/:ApplnNo')
+    .put(dataController.TcUpdate);
 data.route('/deleteData/:aadhaarNum')
     .delete(dataController.deleteData);
 module.exports = data;

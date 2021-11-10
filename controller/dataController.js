@@ -266,7 +266,7 @@ exports.Application = function (req, res) {
 
 exports.BcCount = function (req, res) {
 
-    Data.countDocuments({community:"BC",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+    Data.countDocuments({community:"BC",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
 
         if (err) {
             return res.json({
@@ -282,7 +282,7 @@ exports.BcCount = function (req, res) {
  
 exports.OcCount = function (req, res) {
 
-    Data.countDocuments({community:"OC",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+    Data.countDocuments({community:"OC",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
 
         if (err) {
             return res.json({
@@ -298,7 +298,7 @@ exports.OcCount = function (req, res) {
 
 exports.MbcCount = function (req, res) {
 
-    Data.countDocuments({community:"MBC",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+    Data.countDocuments({community:"MBC",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
 
         if (err) {
             return res.json({
@@ -314,7 +314,7 @@ exports.MbcCount = function (req, res) {
  
 exports.ScCount = function (req, res) {
 
-    Data.countDocuments({community:"SC",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+    Data.countDocuments({community:"SC",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
 
         if (err) {
             return res.json({
@@ -329,7 +329,7 @@ exports.ScCount = function (req, res) {
 
  exports.ScaCount = function (req, res) {
 
-    Data.countDocuments({community:"SCA",coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+    Data.countDocuments({community:"SCA",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
 
         if (err) {
             return res.json({
@@ -345,7 +345,7 @@ exports.ScCount = function (req, res) {
 
  exports.TotalCount = function (req, res) {
 
-    Data.countDocuments({coutype:req.params.coutype,Course:req.params.Course},function(err,data){
+    Data.countDocuments({coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
 
         if (err) {
             return res.json({
@@ -644,6 +644,26 @@ exports.SectionAlertment = function (req, res) {
     Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:{  
              
         Section : req.body.Section,
+
+    }},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data); 
+    });
+
+};
+
+
+exports.TcUpdate = function (req, res) {
+
+    Data.updateOne({ApplnNo:req.params.ApplnNo},{$set:{  
+             
+        Admissionstatus : "Left",
 
     }},function(err,data){
 
