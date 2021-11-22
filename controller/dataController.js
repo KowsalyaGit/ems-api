@@ -70,14 +70,14 @@ exports.appNo = function (req, res) {
 
         transporter.sendMail(mailData, function (err, info) {
             if(err){
-             // console.log(err)
+             
               res.json({
                 status: "error",
                 message: err,
               });
             }
             else{
-               // console.log(info);
+              
                 res.json({
                     status: "success",
                     data: info
