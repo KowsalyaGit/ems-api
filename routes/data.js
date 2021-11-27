@@ -38,6 +38,9 @@ data.route('/StudentNameList/:Course/:Admissionstatus/:Academicyear/:Semester')
 data.route('/StudentFullData/:Academicyear')
     .get(dataController.StudentFullData);
 
+data.route('/SectionAllotment/:Academicyear/:Course')
+    .get(dataController.SectionAllotment);
+
 data.route('/ApplicationSales/:coutype/:FromDate/:ToDate')
     .get(dataController.ApplicationSales);
 

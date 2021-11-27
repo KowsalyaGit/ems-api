@@ -33,6 +33,7 @@ exports.saveIncome = async (req, res) => {
      Academicyear : req.body.Academicyear,
      CNo : req.body.CNo,
      FeeType : req.body.FeeType,
+     Status : "UNPAID"   
     
     
    });
@@ -46,8 +47,38 @@ exports.saveIncome = async (req, res) => {
     res.json(data);
 });
     }
-
 }
+
+exports.feeConfirmation = function (req, res) {
+
+    Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+
+exports.updateConfirmation = function (req, res) {
+    Income.updateOne({RNo:req.body.RNo},{$set:(req.body)
+        
+    },function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data); 
+    });
+};
 
 exports.getIncome = async (req, res) => {
 

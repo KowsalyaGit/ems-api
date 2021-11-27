@@ -70,14 +70,14 @@ exports.appNo = function (req, res) {
 
         transporter.sendMail(mailData, function (err, info) {
             if(err){
-              console.log(err)
+             // console.log(err)
               res.json({
                 status: "error",
                 message: err,
               });
             }
             else{
-                console.log(info);
+               // console.log(info);
                 res.json({
                     status: "success",
                     data: info
@@ -452,6 +452,21 @@ exports.StudentNameList = function (req, res) {
 
 exports.StudentFullData = function (req, res) {
     Data.find({Academicyear:req.params.Academicyear}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+
+exports.SectionAllotment = function (req, res) {
+    Data.find({Academicyear:req.params.Academicyear,Course:req.params.Course,Admissionstatus:"Confirm"}, function (err, data) {
         if(err){
             res.json(err)
         }
