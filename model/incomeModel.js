@@ -42,6 +42,7 @@ var incomeSchema = mongoose.Schema({
      FeeSem : Number,
      Academicyear : String,
      Status: String,
+     paymentMode: String,
 
     // createdAt: {
     //     type: Date,

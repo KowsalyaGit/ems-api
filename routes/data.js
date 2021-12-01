@@ -35,7 +35,7 @@ data.route('/TotalCount/:coutype/:Course')
 data.route('/StudentNameList/:Course/:Admissionstatus/:Academicyear/:Semester')
     .get(dataController.StudentNameList);
 
-data.route('/StudentFullData/:Academicyear')
+data.route('/StudentFullData/:Academicyear/:Course')
     .get(dataController.StudentFullData);
 
 data.route('/SectionAllotment/:Academicyear/:Course')

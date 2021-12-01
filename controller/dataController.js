@@ -451,7 +451,7 @@ exports.StudentNameList = function (req, res) {
 };
 
 exports.StudentFullData = function (req, res) {
-    Data.find({Academicyear:req.params.Academicyear}, function (err, data) {
+    Data.find({Academicyear:req.params.Academicyear,Course:req.params.Course}, function (err, data) {
         if(err){
             res.json(err)
         }
