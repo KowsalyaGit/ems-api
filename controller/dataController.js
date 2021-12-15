@@ -295,10 +295,54 @@ exports.OcCount = function (req, res) {
     });
  };
 
+exports.BcmCount = function (req, res) {
+
+    Data.countDocuments({community:"BCM",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
 
 exports.MbcCount = function (req, res) {
 
     Data.countDocuments({community:"MBC",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
+
+exports.DncCount = function (req, res) {
+
+    Data.countDocuments({community:"DNC",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
+
+exports.DntCount = function (req, res) {
+
+    Data.countDocuments({community:"DNT",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
 
         if (err) {
             return res.json({
@@ -342,6 +386,20 @@ exports.ScCount = function (req, res) {
     });
  };
 
+exports.StCount = function (req, res) {
+
+    Data.countDocuments({community:"ST",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+ };
 
  exports.TotalCount = function (req, res) {
 
@@ -735,3 +793,42 @@ exports.download = function (req, res) {
     const filestream = fs.createReadStream(file);
     filestream.pipe(res);
 }
+
+
+
+exports.ChallonGenerate = function (req, res) {
+
+Data.aggregate([
+    
+    // { "$match": { Academicyear:req.params.Academicyear,Course:req.params.Course,Sem:req.params.FeeSem } },
+    
+    {
+$lookup:
+    {
+        from: "feemasters",
+        localField: "CNo",
+        foreignField : "CNo",
+        as: "dataFeeMaster"
+    }
+    }]).exec((err, result)=>{
+      if (err) {
+          res.json("error" ,err);
+      }
+                if (result) {
+          res.json(result);
+      }
+    })
+};
+
+
+
+
+
+
+
+
+
+
+
+
+

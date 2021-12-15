@@ -8,13 +8,42 @@ exports.saveFeeMaster = async (req, res) => {
     SNo : req.body.SNo,
     Course : req.body.Course,
     CNo : req.body.CNo,
-    FeeType : req.body.FeeType,
+    // FeeType : req.body.FeeType,
     Description : req.body.Description,
     Lateral : req.body.Lateral,
     Head : req.body.Head,
     FeeSem : req.body.FeeSem,
     Academicyear : req.body.Academicyear,
-    Amount : req.body.Amount 
+    Amount : req.body.Amount,
+
+    CouType : req.body.CouType,
+    Typeoffee : req.body.Typeoffee,
+    //College Fees
+    TuitionFee : req.body.TuitionFee,
+    LabFee : req.body.LabFee,
+    InternetFee : req.body.InternetFee,
+    SpecialFee : req.body.SpecialFee,
+    InfrastructureFee : req.body.InfrastructureFee,
+    CapsaFee : req.body.CapsaFee,
+    DevelopmentchargeFee : req.body.DevelopmentchargeFee,
+    StudentJournalFee : req.body.StudentJournalFee,
+    AmenitiesFee : req.body.AmenitiesFee,
+    Plus2verificationFee : req.body.Plus2verificationFee,
+    TotalcollegeFee : req.body.TotalcollegeFee,
+    //University Fees
+    RegistrationFee : req.body.RegistrationFee,
+    RecognitionFee : req.body.RecognitionFee,
+    MatriculationFee : req.body.MatriculationFee,
+    CulturalFee : req.body.CulturalFee,
+    SportsFee : req.body.SportsFee,
+    YouthDevelopmentFee : req.body.YouthDevelopmentFee,
+    NSSFee : req.body.NSSFee,
+    GroupInsuranceFee : req.body.GroupInsuranceFee,
+    UnivInfrastructureFee : req.body.UnivInfrastructureFee,
+    FlagDayFee : req.body.FlagDayFee,
+    UniversityTotalFee : req.body.UniversityTotalFee,
+    GrandTotalFee : req.body.GrandTotalFee,
+
    });
    const fee = FeeMasters.save(function(err,data){
     if (err) {
@@ -83,6 +112,34 @@ exports.updateFeeMaster = async (req, res) => {
         Lateral : req.body.Lateral,
         Academicyear : req.body.Academicyear,
         Head : req.body.Head,
+
+        CouType : req.body.CouType,
+        Typeoffee : req.body.Typeoffee,
+        //College Fees
+        TuitionFee : req.body.TuitionFee,
+        LabFee : req.body.LabFee,
+        InternetFee : req.body.InternetFee,
+        SpecialFee : req.body.SpecialFee,
+        InfrastructureFee : req.body.InfrastructureFee,
+        CapsaFee : req.body.CapsaFee,
+        DevelopmentchargeFee : req.body.DevelopmentchargeFee,
+        StudentJournalFee : req.body.StudentJournalFee,
+        AmenitiesFee : req.body.AmenitiesFee,
+        Plus2verificationFee : req.body.Plus2verificationFee,
+        TotalcollegeFee : req.body.TotalcollegeFee,
+        //University Fees
+        RegistrationFee : req.body.RegistrationFee,
+        RecognitionFee : req.body.RecognitionFee,
+        MatriculationFee : req.body.MatriculationFee,
+        CulturalFee : req.body.CulturalFee,
+        SportsFee : req.body.SportsFee,
+        YouthDevelopmentFee : req.body.YouthDevelopmentFee,
+        NSSFee : req.body.NSSFee,
+        GroupInsuranceFee : req.body.GroupInsuranceFee,
+        UnivInfrastructureFee : req.body.UnivInfrastructureFee,
+        FlagDayFee : req.body.FlagDayFee,
+        UniversityTotalFee : req.body.UniversityTotalFee,
+        GrandTotalFee : req.body.GrandTotalFee,
 
     }},function(err,data){
 

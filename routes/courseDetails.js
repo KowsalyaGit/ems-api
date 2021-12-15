@@ -10,5 +10,6 @@ courseDetails.route('/getPGCourseDetails').get(courseDetailsController.getPGCour
 courseDetails.route('/getIdCourseDetails/:Sno').get(courseDetailsController.getIdCourseDetails);
 courseDetails.route('/updateCourseDetails').put(courseDetailsController.updateCourseDetails);
 courseDetails.route('/deleteCourseDetails/:Sno').delete(courseDetailsController.deleteCourseDetails);
+courseDetails.route('/getCourseType').get(courseDetailsController.getCourseType);
 
 module.exports = courseDetails;

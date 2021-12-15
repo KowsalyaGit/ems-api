@@ -17,17 +17,29 @@ data.route('/ApplnNo/AllDetails/:ApplnNo')
 data.route('/BcCount/:coutype/:Course')
     .get(dataController.BcCount);
 
+data.route('/OcCount/:coutype/:Course')
+    .get(dataController.OcCount);
+
+data.route('/BcmCount/:coutype/:Course')
+    .get(dataController.BcmCount);
+
 data.route('/MbcCount/:coutype/:Course')
     .get(dataController.MbcCount);
 
-data.route('/OcCount/:coutype/:Course')
-    .get(dataController.OcCount);
+data.route('/DncCount/:coutype/:Course')
+    .get(dataController.DncCount);
+
+data.route('/DntCount/:coutype/:Course')
+    .get(dataController.DntCount);   
 
 data.route('/ScCount/:coutype/:Course')
     .get(dataController.ScCount);
     
 data.route('/ScaCount/:coutype/:Course')
     .get(dataController.ScaCount);
+
+data.route('/StCount/:coutype/:Course')
+    .get(dataController.StCount);   
  
 data.route('/TotalCount/:coutype/:Course')
     .get(dataController.TotalCount);
@@ -65,6 +77,12 @@ data.route('/Attendance/:Course/:Section/:Semester')
 data.route('/Course/UG')
     .get(dataController.UGCourse);
 
+    
+data.route('/Course/ChallonGenerate/:Academicyear/:Course/:FeeSem')
+    .get(dataController.ChallonGenerate);
+
+
+
 data.route('/download/:file')
     .get(dataController.download);
 data.route('/appNoMail/sentEmail')
@@ -79,6 +97,11 @@ data.route('/Section/Alertment')
     .put(dataController.SectionAlertment);
 data.route('/TcUpdate/:ApplnNo')
     .put(dataController.TcUpdate);
+
+
+// data.route('ChallonGenerate')
+//     .get(dataController.ChallonGenerate);
+
 data.route('/deleteData/:aadhaarNum')
     .delete(dataController.deleteData);
 module.exports = data;

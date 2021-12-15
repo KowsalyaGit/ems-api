@@ -151,3 +151,18 @@ exports.deleteCourseDetails = async (req, res) => {
         res.json(data);   
     });       
 }
+
+exports.getCourseType = async (req, res) => {
+
+    CourseDetails.findone({CouType:req.params.CouType},function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+
+    });
+}

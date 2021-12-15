@@ -65,6 +65,22 @@ exports.feeConfirmation = function (req, res) {
 };
 
 
+exports.PaidReport = function (req, res) {
+
+    Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course,FeeType:req.params.FeeType,FeeSem:req.params.FeeSem,Status:"PAID"}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+
 exports.updateConfirmation = function (req, res) {
     Income.updateOne({RNo:req.body.RNo},{$set:(req.body)
         
