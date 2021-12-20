@@ -58,6 +58,9 @@ var incomeSchema = mongoose.Schema({
     StudentJournalFee: { type: Number, default: 0 },
     AmenitiesFee: { type: Number, default: 0 },
     Plus2verificationFee: { type: Number, default: 0 },
+    ExamFees: { type: Number, default: 0 },
+    ConvocationFees: { type: Number, default: 0 },
+    OtherFees: { type: Number, default: 0 },
     TotalcollegeFee: { type: Number, default: 0 },
     //University Fees
     RegistrationFee: { type: Number, default: 0 },

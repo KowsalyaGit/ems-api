@@ -49,6 +49,9 @@ exports.saveFeeMaster = async (req, res) => {
     StudentJournalFee : req.body.StudentJournalFee,
     AmenitiesFee : req.body.AmenitiesFee,
     Plus2verificationFee : req.body.Plus2verificationFee,
+    ExamFees: req.body.ExamFees,
+    ConvocationFees: req.body.ConvocationFees,
+    OtherFees: req.body.OtherFees,
     TotalcollegeFee : req.body.TotalcollegeFee,
     //University Fees
     RegistrationFee : req.body.RegistrationFee,
