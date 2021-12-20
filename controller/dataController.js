@@ -798,9 +798,47 @@ exports.download = function (req, res) {
 
 exports.ChallonGenerate = function (req, res) {
 
+
+// Data.aggregate([
+    
+//     { "$match": { Academicyear:req.params.Academicyear,Course:req.params.Course,Sem:req.params.FeeSem } },
+    
+//     {
+// $lookup:
+//     {
+//         from: "feemasters",
+//         // localField: "CNo",
+//         // foreignField : "CNo",
+//         as: "dataFeeMaster",
+//         let: { CNo: '$CNo' },
+//          pipeline: [
+//           {
+//             $match: {
+//               $expr: {
+//                 $and: [
+//                   { $eq: ['$CNo', '$$CNo'] },
+//                   { $eq: ['$Sem', req.params.FeeSem ] },
+//                 ]
+//               }
+//             }
+//           }
+//         ]
+//     }
+//     }]).exec((err, result)=>{
+//       if (err) {
+//           res.json("error" ,err);
+//       }
+//                 if (result) {
+//           res.json(result);
+//       }
+//     })
+
+
+
+
 Data.aggregate([
     
-    // { "$match": { Academicyear:req.params.Academicyear,Course:req.params.Course,Sem:req.params.FeeSem } },
+     { "$match": { Academicyear:req.params.Academicyear,Course:req.params.Course,Sem:parseInt(req.params.FeeSem) } },
     
     {
 $lookup:
@@ -817,7 +855,8 @@ $lookup:
                 if (result) {
           res.json(result);
       }
-    })
+    })   
+
 };
 
 

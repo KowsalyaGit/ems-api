@@ -5,7 +5,7 @@ var FeeMasterSchema = mongoose.Schema({
     SNo :{ type: Number, unique: true},
     Course: String,
     CNo : Number,
-    FeeType : String,
+    //FeeType : String,
     Description : String,
     Lateral : String,
     Head  : String,

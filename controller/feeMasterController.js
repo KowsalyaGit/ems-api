@@ -3,7 +3,27 @@ require('dotenv').config();
 
 //save
 exports.saveFeeMaster = async (req, res) => {
-        
+
+ FeeMaster.find({Academicyear:req.body.Academicyear,Course:req.body.Course,FeeSem : req.body.FeeSem}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        if(data.length ==0){
+           
+           SaveFeeMaster();
+        }
+        else{
+            return res.json({
+            status: "error",
+            message: err,
+        });
+           
+        }
+       
+    });
+
+        function SaveFeeMaster(){
     const FeeMasters = new FeeMaster({
     SNo : req.body.SNo,
     Course : req.body.Course,
@@ -54,6 +74,7 @@ exports.saveFeeMaster = async (req, res) => {
     }
     res.json(data);
 });
+        }
 }
 
 exports.getFeeMaster = async (req, res) => {
