@@ -132,6 +132,22 @@ exports.PaidReport = function (req, res) {
 };
 
 
+exports.UnpaidReport = function (req, res) {
+
+    Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course,Typeoffee:req.params.Typeoffee,FeeSem:req.params.FeeSem,Status:"UNPAID"}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+
 exports.updateConfirmation = function (req, res) {
     Income.updateOne({RNo:req.body.RNo},{$set:(req.body)
         
