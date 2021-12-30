@@ -861,6 +861,20 @@ $lookup:
 
 
 
+exports.lastappNo = async (req, res) => {
+
+   
+    Data.find().limit(1).sort({createdAt : -1}).lean().exec(function(err,data){
+        if (err) {
+        return res.json({
+            status: "error",
+            message: err,
+        });
+    }
+    res.json(data);
+    });
+    
+}
 
 
 

@@ -7,6 +7,8 @@ income.route('/saveIncome').post(incomeController.saveIncome);
 income.route('/getIncome').get(incomeController.getIncome);
 income.route('/feeConfirmation/:Academicyear/:Course').get(incomeController.feeConfirmation);
 income.route('/PaidReport/:Academicyear/:Course/:Typeoffee/:FeeSem').get(incomeController.PaidReport);
+income.route('/DatewisePaidReport/:Academicyear/:Course/:Typeoffee/:FeeSem/:FromDate/:ToDate').get(incomeController.DatewisePaidReport);
+income.route('/variousFeesDatewise/:FromDate/:ToDate').get(incomeController.variousFeesDatewise);
 income.route('/UnpaidReport/:Academicyear/:Course/:Typeoffee/:FeeSem').get(incomeController.UnpaidReport);
 income.route('/getIdIncome/:FeeType/:FromDate/:ToDate').get(incomeController.getIdIncome);
 income.route('/updateConfirmation').put(incomeController.updateConfirmation);

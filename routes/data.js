@@ -81,6 +81,10 @@ data.route('/Course/UG')
 data.route('/Course/ChallonGenerate/:Academicyear/:Course/:FeeSem')
     .get(dataController.ChallonGenerate);
 
+       
+data.route('/Course/lastappNo')
+    .get(dataController.lastappNo);
+
 
 
 data.route('/download/:file')

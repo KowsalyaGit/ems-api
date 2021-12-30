@@ -38,6 +38,7 @@ var incomeSchema = mongoose.Schema({
      ReceiptDate : Date,
      Course : String,
      //Amount : Number,
+     Description : String,
      CNo : Number,
      FeeType : String,
      FeeSem : Number,

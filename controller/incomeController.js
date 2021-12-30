@@ -4,7 +4,7 @@ require('dotenv').config();
 //save 
 exports.saveIncome = async (req, res) => {
 
-    Income.find({ApplnNo:req.body.ApplnNo,Academicyear:req.body.Academicyear,Course:req.body.Course,FeeSem : req.body.FeeSem}, function (err, data) {
+    Income.find({ApplnNo:req.body.ApplnNo,Academicyear:req.body.Academicyear,Course:req.body.Course,FeeSem : req.body.FeeSem,Typeoffee:req.body.Typeoffee}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -100,6 +100,7 @@ exports.saveIncome = async (req, res) => {
     }
 }
 
+
 exports.feeConfirmation = function (req, res) {
 
     Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course}, function (err, data) {
@@ -129,6 +130,52 @@ exports.PaidReport = function (req, res) {
         });
        
     });
+};
+
+exports.DatewisePaidReport = function (req, res) {
+
+
+     var query;
+        if( (req.params.Course === "All") && (req.params.FeeSem === "All") ){
+            query =  {Academicyear:req.params.Academicyear,Typeoffee:req.params.Typeoffee,Status:"PAID",updatedAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }
+        }else if(req.params.Course === "All"){
+             query =  {Academicyear:req.params.Academicyear,FeeSem:req.params.FeeSem,Typeoffee:req.params.Typeoffee,Status:"PAID",updatedAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }
+        }
+        else if(req.params.FeeSem === "All"){
+             query =  {Academicyear:req.params.Academicyear,Course:req.params.Course,Typeoffee:req.params.Typeoffee,Status:"PAID",updatedAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }
+        }
+        else{
+            query = {Academicyear:req.params.Academicyear,Course:req.params.Course,Typeoffee:req.params.Typeoffee,FeeSem:req.params.FeeSem,Status:"PAID",updatedAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }
+        }
+
+
+    Income.find(query, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+
+exports.variousFeesDatewise = function (req, res) {
+
+    // Income.find({Status:"PAID",updatedAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }, function (err, data) {
+    //     if(err){
+    //         res.json(err)
+    //     }
+      
+    //     res.json({
+    //         status: 'success',
+    //         data: data
+    //     });
+       
+    // });
 };
 
 
