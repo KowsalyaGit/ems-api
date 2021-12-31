@@ -165,17 +165,17 @@ exports.DatewisePaidReport = function (req, res) {
 
 exports.variousFeesDatewise = function (req, res) {
 
-    // Income.find({Status:"PAID",updatedAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }, function (err, data) {
-    //     if(err){
-    //         res.json(err)
-    //     }
+    Income.find({Status:"PAID",updatedAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }, function (err, data) {
+        if(err){
+            res.json(err)
+        }
       
-    //     res.json({
-    //         status: 'success',
-    //         data: data
-    //     });
+        res.json({
+            status: 'success',
+            data: data
+        });
        
-    // });
+    });
 };
 
 
