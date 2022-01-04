@@ -49,13 +49,12 @@ exports.saveIncome = async (req, res) => {
     Name : req.body.Name,
     ReceiptDate : req.body.ReceiptDate,
     Course : req.body.Course,
-    //Amount : req.body.Amount,
     FeeSem : req.body.FeeSem,
     Academicyear : req.body.Academicyear,
     CNo : req.body.CNo,
-    //FeeType : req.body.FeeType,
     Status : "UNPAID",
-
+    Remark : req.body.Remark,
+    Description : req.body.Description,
     Typeoffee : req.body.Typeoffee,
 
     TuitionFee : req.body.TuitionFee,
@@ -165,7 +164,7 @@ exports.DatewisePaidReport = function (req, res) {
 
 exports.variousFeesDatewise = function (req, res) {
 
-    Income.find({Status:"PAID",updatedAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }, function (err, data) {
+    Income.find({Status:"PAID",Remark:"Various Fees",updatedAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -228,6 +227,38 @@ exports.getIncome = async (req, res) => {
 exports.getIdIncome = async (req, res) => {
 
     const getIdIncome  = Income.find({FeeType: req.params.FeeType , ReceiptDate:{$gte: req.params.FromDate,$lte: req.params.ToDate} },function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+}
+
+
+exports.getVariousRNo = async (req, res) => {
+
+    Income.find({Remark: "Various Fees" },function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+}
+
+
+exports.getRNo = async (req, res) => {
+
+    Income.find({Remark: "Challan" },function(err,data){
 
         if (err) {
             return res.json({

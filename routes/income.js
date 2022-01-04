@@ -5,6 +5,8 @@ var incomeController = require('../controller/incomeController');
 
 income.route('/saveIncome').post(incomeController.saveIncome);
 income.route('/getIncome').get(incomeController.getIncome);
+income.route('/getVariousRNo').get(incomeController.getVariousRNo);
+income.route('/getRNo').get(incomeController.getRNo);
 income.route('/feeConfirmation/:Academicyear/:Course').get(incomeController.feeConfirmation);
 income.route('/PaidReport/:Academicyear/:Course/:Typeoffee/:FeeSem').get(incomeController.PaidReport);
 income.route('/DatewisePaidReport/:Academicyear/:Course/:Typeoffee/:FeeSem/:FromDate/:ToDate').get(incomeController.DatewisePaidReport);
