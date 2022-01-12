@@ -47,10 +47,13 @@ data.route('/TotalCount/:coutype/:Course')
 data.route('/StudentNameList/:Course/:Admissionstatus/:Academicyear/:Semester')
     .get(dataController.StudentNameList);
 
-data.route('/StudentFullData/:Academicyear/:Course')
+data.route('/StudentFullData/:Academicyear/:Course/:Semester')
     .get(dataController.StudentFullData);
 
-data.route('/SectionAllotment/:Academicyear/:Course')
+data.route('/StudentConfirm/:Academicyear/:Course/:Semester')
+    .get(dataController.StudentConfirm);
+
+data.route('/SectionAllotment/:Academicyear/:Course/:Semester')
     .get(dataController.SectionAllotment);
 
 data.route('/ApplicationSales/:coutype/:FromDate/:ToDate')
@@ -65,7 +68,7 @@ data.route('/Course/AllCourse/:Course/:Semester')
 data.route('/UniversityAdmission/:Academicyear/:Course')
     .get(dataController.UniversityAdmission);
     
-data.route('/Course/AllCourse/:Course')
+data.route('/Course/AllCourse/:Academicyear/:Course/:Semester')
     .get(dataController.Courses);
    
 data.route('/Transferlist/:Academicyear/:coutype')

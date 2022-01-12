@@ -4,7 +4,7 @@ require('dotenv').config();
 //save 
 exports.saveIncome = async (req, res) => {
 
-    Income.find({ApplnNo:req.body.ApplnNo,Academicyear:req.body.Academicyear,Course:req.body.Course,FeeSem : req.body.FeeSem,Typeoffee:req.body.Typeoffee}, function (err, data) {
+    Income.find({Regno:req.body.Regno,Academicyear:req.body.Academicyear,Course:req.body.Course,FeeSem : req.body.FeeSem,Typeoffee:req.body.Typeoffee}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -100,9 +100,40 @@ exports.saveIncome = async (req, res) => {
 }
 
 
+exports.AcademicyearCourseFeeSem = function (req, res) {
+
+    Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course,FeeSem:req.params.FeeSem,Remark: "Challan"}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',              
+            data: data
+        });
+       
+    });
+};
+
+
+exports.VariousAcademicyearCourseFeeSem = function (req, res) {
+
+    Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course,FeeSem:req.params.FeeSem,Remark:"Various Fees"}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',              
+            data: data
+        });
+       
+    });
+};
+
 exports.feeConfirmation = function (req, res) {
 
-    Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course}, function (err, data) {
+    Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course,FeeSem:req.params.Semester}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -239,23 +270,6 @@ exports.getIdIncome = async (req, res) => {
     });
 }
 
-
-exports.getVariousRNo = async (req, res) => {
-
-    Income.find({Remark: "Various Fees" },function(err,data){
-
-        if (err) {
-            return res.json({
-                status: "error",
-                message: err,
-            });
-        }
-        res.json(data);
-        
-    });
-}
-
-
 exports.getRNo = async (req, res) => {
 
     Income.find({Remark: "Challan" },function(err,data){
@@ -270,6 +284,39 @@ exports.getRNo = async (req, res) => {
         
     });
 }
+
+
+exports.ReceiptNo = async (req, res) => {
+
+    Income.find({Remark: "Challan",Regno:req.params.Regno },function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+}
+
+
+exports.VariousRNo = async (req, res) => {
+
+    Income.find({Remark: "Various Fees",Regno:req.params.Regno },function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+}
+
 
 exports.updateIncome = async (req, res) => {
     

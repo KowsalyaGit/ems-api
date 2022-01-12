@@ -5,9 +5,12 @@ var incomeController = require('../controller/incomeController');
 
 income.route('/saveIncome').post(incomeController.saveIncome);
 income.route('/getIncome').get(incomeController.getIncome);
-income.route('/getVariousRNo').get(incomeController.getVariousRNo);
+income.route('/VariousRNo/:Regno').get(incomeController.VariousRNo);
 income.route('/getRNo').get(incomeController.getRNo);
-income.route('/feeConfirmation/:Academicyear/:Course').get(incomeController.feeConfirmation);
+income.route('/ReceiptNo/:Regno').get(incomeController.ReceiptNo);
+income.route('/AcademicyearCourseFeeSem/:Academicyear/:Course/:FeeSem').get(incomeController.AcademicyearCourseFeeSem);
+income.route('/VariousAcademicyearCourseFeeSem/:Academicyear/:Course/:FeeSem').get(incomeController.VariousAcademicyearCourseFeeSem);
+income.route('/feeConfirmation/:Academicyear/:Course/:Semester').get(incomeController.feeConfirmation);
 income.route('/PaidReport/:Academicyear/:Course/:Typeoffee/:FeeSem').get(incomeController.PaidReport);
 income.route('/DatewisePaidReport/:Academicyear/:Course/:Typeoffee/:FeeSem/:FromDate/:ToDate').get(incomeController.DatewisePaidReport);
 income.route('/variousFeesDatewise/:FromDate/:ToDate').get(incomeController.variousFeesDatewise);

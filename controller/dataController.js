@@ -509,7 +509,22 @@ exports.StudentNameList = function (req, res) {
 };
 
 exports.StudentFullData = function (req, res) {
-    Data.find({Academicyear:req.params.Academicyear,Course:req.params.Course}, function (err, data) {
+    Data.find({Academicyear:req.params.Academicyear,Course:req.params.Course,Sem:req.params.Semester}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+
+exports.StudentConfirm = function (req, res) {
+    Data.find({Academicyear:req.params.Academicyear,Course:req.params.Course,Sem:req.params.Semester,Admissionstatus:"Confirm"}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -524,7 +539,7 @@ exports.StudentFullData = function (req, res) {
 
 
 exports.SectionAllotment = function (req, res) {
-    Data.find({Academicyear:req.params.Academicyear,Course:req.params.Course,Admissionstatus:"Confirm"}, function (err, data) {
+    Data.find({Academicyear:req.params.Academicyear,Course:req.params.Course,Sem:req.params.Semester,Admissionstatus:"Confirm"}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -568,7 +583,7 @@ exports.UniversityAdmission = function (req, res) {
 };
 
 exports.Courses = function (req, res) {
-    Data.find({Course:req.params.Course}, function (err, data) {
+    Data.find({Academicyear:req.params.Academicyear,Course:req.params.Course,Sem:req.params.Semester}, function (err, data) {
         if(err){
             res.json(err)
         }
