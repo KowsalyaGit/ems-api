@@ -111,7 +111,7 @@ exports.new = function (req, res) {
         var currentYear = new Date();
          req.body.Syear = currentYear.getFullYear();
          var acyear=currentYear.getFullYear() + 1;
-         req.body.Academicyear = currentYear.getFullYear() + '-' + acyear; 
+        // req.body.Academicyear = currentYear.getFullYear() + '-' + acyear; 
        
          var ayear=currentYear.getFullYear();
          var twoDigitYear = ayear.toString().substr(-2);

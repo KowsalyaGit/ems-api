@@ -18,6 +18,7 @@ income.route('/UnpaidReport/:Academicyear/:Course/:Typeoffee/:FeeSem').get(incom
 income.route('/getIdIncome/:FeeType/:FromDate/:ToDate').get(incomeController.getIdIncome);
 income.route('/updateConfirmation').put(incomeController.updateConfirmation);
 income.route('/updateIncome').put(incomeController.updateIncome);
+income.route('/PaidCount/:Academicyear/:Course/:Semester').get(incomeController.PaidCount);
 income.route('/deleteIncome/:RNo').delete(incomeController.deleteIncome);
 
 module.exports = income;
