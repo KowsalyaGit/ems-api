@@ -18,7 +18,9 @@ income.route('/UnpaidReport/:Academicyear/:Course/:Typeoffee/:FeeSem').get(incom
 income.route('/getIdIncome/:FeeType/:FromDate/:ToDate').get(incomeController.getIdIncome);
 income.route('/updateConfirmation').put(incomeController.updateConfirmation);
 income.route('/updateIncome').put(incomeController.updateIncome);
-income.route('/PaidCount/:Academicyear/:Course/:Semester').get(incomeController.PaidCount);
+income.route('/UGPaidCount/:Academicyear/:Course/:Semester').get(incomeController.UGPaidCount);
+income.route('/UGUnpaidCount/:Academicyear/:Course/:Semester').get(incomeController.UGUnpaidCount);
+income.route('/PGPaidCount/:Academicyear/:Course/:Semester').get(incomeController.PGPaidCount);
 income.route('/deleteIncome/:RNo').delete(incomeController.deleteIncome);
 
 module.exports = income;
