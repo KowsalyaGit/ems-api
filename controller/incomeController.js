@@ -4,7 +4,7 @@ require('dotenv').config();
 //save 
 exports.saveIncome = async (req, res) => {
 
-    Income.find({Regno:req.body.Regno,Academicyear:req.body.Academicyear,Course:req.body.Course,FeeSem : req.body.FeeSem,Typeoffee:req.body.Typeoffee}, function (err, data) {
+    Income.find({FeeSem : req.body.FeeSem,Academicyear:req.body.Academicyear,Course:req.body.Course,Regno:req.body.Regno,Typeoffee:req.body.Typeoffee}, function (err, data) {
         if(err){
             res.json(err)
         }
@@ -87,7 +87,7 @@ exports.saveIncome = async (req, res) => {
     
     
    });
-   const addIncome = income.save(function(err,data){
+    income.save(function(err,data){
     if (err) {
         return res.json({
             status: "error",
@@ -288,7 +288,7 @@ exports.getRNo = async (req, res) => {
 
 exports.ReceiptNo = async (req, res) => {
 
-    Income.find({Remark: "Challan",Regno:req.params.Regno },function(err,data){
+    Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course,FeeSem:req.params.FeeSem,Remark: "Challan",Regno:req.params.Regno },function(err,data){
 
         if (err) {
             return res.json({
