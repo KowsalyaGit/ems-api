@@ -422,6 +422,32 @@ if(req.params.Course !== "All"){
     });
 };
 
+
+exports.PGUnPaidCount = function (req, res) {
+
+ var que;
+if(req.params.Course !== "All"){
+   que = {Academicyear:req.params.Academicyear, Course:req.params.Course, FeeSem:req.params.Semester,Status:"UNPAID"}
+}else{
+    que = {Academicyear:req.params.Academicyear, FeeSem:req.params.Semester,Status:"UNPAID"}
+    // que = {ReceiptDate:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'}}
+}
+
+    
+    Income.countDocuments(que,function(err,data){
+
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+        
+    });
+};
+
 exports.deleteIncome = async (req, res) => {
 
     const DeleteIncome = Income.deleteOne({RNo:req.params.RNo},function(err,data){

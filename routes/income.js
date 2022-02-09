@@ -21,6 +21,7 @@ income.route('/updateIncome').put(incomeController.updateIncome);
 income.route('/UGPaidCount/:Academicyear/:Course/:Semester').get(incomeController.UGPaidCount);
 income.route('/UGUnpaidCount/:Academicyear/:Course/:Semester').get(incomeController.UGUnpaidCount);
 income.route('/PGPaidCount/:Academicyear/:Course/:Semester').get(incomeController.PGPaidCount);
+income.route('/PGUnPaidCount/:Academicyear/:Course/:Semester').get(incomeController.PGUnPaidCount);
 income.route('/deleteIncome/:RNo').delete(incomeController.deleteIncome);
 
 module.exports = income;
