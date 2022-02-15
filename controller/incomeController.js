@@ -288,7 +288,7 @@ exports.getRNo = async (req, res) => {
 
 exports.ReceiptNo = async (req, res) => {
 
-    Income.find({Academicyear:req.params.Academicyear,Course:req.params.Course,FeeSem:req.params.FeeSem,Remark: "Challan",Regno:req.params.Regno },function(err,data){
+    Income.find({Remark: "Challan",Regno:req.params.Regno },function(err,data){
 
         if (err) {
             return res.json({
@@ -450,13 +450,13 @@ if(req.params.Course !== "All"){
 
 exports.deleteIncome = async (req, res) => {
 
-    const DeleteIncome = Income.deleteOne({RNo:req.params.RNo},function(err,data){
-        if (err) {
-            return res.json({
-                status: "error",
-                message: err,
-            });
-        }
-        res.json(data);   
-    });      
+    // const DeleteIncome = Income.deleteOne({RNo:req.params.RNo},function(err,data){
+    //     if (err) {
+    //         return res.json({
+    //             status: "error",
+    //             message: err,
+    //         });
+    //     }
+    //     res.json(data);   
+    // });      
 }
