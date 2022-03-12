@@ -6,6 +6,12 @@ var transportSchema = mongoose.Schema({
     BusNo : Number,
     VehicleNo : String,
     SingleTripKM : Number,
+    Stop : String,
+    StopOrderNo : Number,
+    UptoKM  : Number,
+    Amount : Number,
+
+
     
     
     createdAt: {

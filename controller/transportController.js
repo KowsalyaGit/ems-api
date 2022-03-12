@@ -30,6 +30,10 @@ exports.saveTransport = async (req, res) => {
     BusNo : req.body.BusNo,
     VehicleNo : req.body.VehicleNo,
     SingleTripKM : req.body.SingleTripKM,
+    Stop : req.body.Stop,
+    StopOrderNo : req.body.StopOrderNo,
+    UptoKM : req.body.UptoKM,
+    Amount : req.body.Amount
     
 
    });
@@ -69,6 +73,10 @@ exports.updateTransport = async (req, res) => {
         BusName : req.body.BusName,
         VehicleNo : req.body.VehicleNo,    
         SingleTripKM : req.body.SingleTripKM,
+        Stop : req.body.Stop,
+        StopOrderNo : req.body.StopOrderNo,
+        UptoKM : req.body.UptoKM,
+        Amount : req.body.Amount
         
 
     }},function(err,data){
