@@ -7,7 +7,8 @@ offlineAppln.route('/saveofflineAppln').post(offlineApplnController.saveofflineA
 offlineAppln.route('/DatewiseReport/:FromDate/:ToDate').get(offlineApplnController.DatewiseReport);
 offlineAppln.route('/CoursewiseReport/:Academicyear/:Course').get(offlineApplnController.CoursewiseReport);
 offlineAppln.route('/getApplnNo/:ApplnNo').get(offlineApplnController.getApplnNo);
-offlineAppln.route('/getAcademicyear/:Academicyear').get(offlineApplnController.getAcademicyear);
+offlineAppln.route('/getUGAcademicyear/:Academicyear').get(offlineApplnController.getUGAcademicyear);
+offlineAppln.route('/getPGAcademicyear/:Academicyear').get(offlineApplnController.getPGAcademicyear);
 offlineAppln.route('/getUGofflineAppln').get(offlineApplnController.getUGofflineAppln);
 offlineAppln.route('/getAYearCourse/:Academicyear/:Course').get(offlineApplnController.getAYearCourse);
 offlineAppln.route('/getPGofflineAppln').get(offlineApplnController.getPGofflineAppln);

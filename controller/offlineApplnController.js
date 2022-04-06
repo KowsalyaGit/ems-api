@@ -247,9 +247,25 @@ exports.getApplnNo = async (req, res) => {
 }
 
 
-exports.getAcademicyear = async (req, res) => {
+exports.getUGAcademicyear = async (req, res) => {
 
-    offlineAppln.find({Academicyear:req.params.Academicyear},function(err,data){
+    offlineAppln.find({Academicyear:req.params.Academicyear,coutype:"UG"},function(err,data){
+
+       if (err) {
+           return res.json({
+               status: "error",
+               message: err,
+           });
+       }
+       res.json(data);
+       
+   });
+}
+
+
+exports.getPGAcademicyear = async (req, res) => {
+
+    offlineAppln.find({Academicyear:req.params.Academicyear,coutype:"PG"},function(err,data){
 
        if (err) {
            return res.json({

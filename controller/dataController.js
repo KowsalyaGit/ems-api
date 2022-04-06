@@ -264,6 +264,21 @@ exports.Application = function (req, res) {
 };
 
 
+exports.aadhaarNum = function (req, res) {
+    Data.findOne({aadhaarNum:req.params.aadhaarNum}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        res.json({
+            status: 'success',
+            data: data
+        });
+       
+    });
+};
+
+
 exports.BcCount = function (req, res) {
 
     Data.countDocuments({community:"BC",coutype:req.params.coutype,Course:req.params.Course,Admissionstatus:"Confirm"},function(err,data){
@@ -634,6 +649,22 @@ exports.update = function (req, res) {
 
 exports.AppUpdateForm = function (req, res) {
     Data.updateOne({ApplnNo:req.body.ApplnNo},{$set:(req.body)
+        
+    },function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data); 
+    });
+};
+
+
+exports.UpdateApplnNo = function (req, res) {
+    Data.updateOne({aadhaarNum:req.body.aadhaarNum},{$set:(req.body)
         
     },function(err,data){
 

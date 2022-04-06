@@ -14,6 +14,9 @@ data.route('/:id')
 data.route('/ApplnNo/AllDetails/:ApplnNo')
     .get(dataController.Application);
 
+data.route('/ApplnNo/AllDetailss/:aadhaarNum')
+    .get(dataController.aadhaarNum);
+
 data.route('/BcCount/:coutype/:Course')
     .get(dataController.BcCount);
 
@@ -100,6 +103,8 @@ data.route('/CTrans/CourseTransfer')
     .put(dataController.CourseTransfer);
 data.route('/App/updateForm')
     .put(dataController.AppUpdateForm);
+data.route('/App/UpdateApplnNo')
+    .put(dataController.UpdateApplnNo);
 data.route('/Section/Alertment')
     .put(dataController.SectionAlertment);
 data.route('/TcUpdate/:ApplnNo')
