@@ -4,7 +4,7 @@ require('dotenv').config();
 //save 
 exports.saveofflineAppln = async (req, res) => {
 
-    offlineAppln.find({aadhaarNum: req.body.mobileNum},function(err,data){
+    offlineAppln.find({mobileNum: req.body.mobileNum},function(err,data){
 
         if (err) {
             return res.json({
