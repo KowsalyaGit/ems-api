@@ -247,6 +247,22 @@ exports.getApplnNo = async (req, res) => {
 }
 
 
+exports.getAcademicyear = async (req, res) => {
+
+    offlineAppln.find({Academicyear:req.params.Academicyear},function(err,data){
+
+       if (err) {
+           return res.json({
+               status: "error",
+               message: err,
+           });
+       }
+       res.json(data);
+       
+   });
+}
+
+
 exports.getUGAcademicyear = async (req, res) => {
 
     offlineAppln.find({Academicyear:req.params.Academicyear,coutype:"UG"},function(err,data){
@@ -398,3 +414,31 @@ exports.deleteofflineAppln = async (req, res) => {
        });       
    }
    
+   
+
+exports.GenerateChallan = function (req, res) {
+
+
+    offlineAppln.aggregate([
+        
+         { "$match": { Academicyear:req.params.Academicyear,Course:req.params.Course,Sem:parseInt(req.params.FeeSem) } },
+        
+        {
+    $lookup:
+        {
+            from: "feemasters",
+            localField: "Course",
+            foreignField : "Course",
+            as: "dataFeeMaster"
+        }
+        }]).exec((err, result)=>{
+          if (err) {
+              res.json("error" ,err);
+          }
+                    if (result) {
+              res.json(result);
+          }
+        })   
+    
+    };
+    

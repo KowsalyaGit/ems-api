@@ -4,6 +4,7 @@ var income = express.Router();
 var incomeController = require('../controller/incomeController');
 
 income.route('/saveIncome').post(incomeController.saveIncome);
+income.route('/saveofflineIncome').post(incomeController.saveofflineIncome);
 income.route('/getIncome').get(incomeController.getIncome);
 income.route('/VariousRNo/:Regno').get(incomeController.VariousRNo);
 income.route('/getRNo').get(incomeController.getRNo);

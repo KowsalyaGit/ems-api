@@ -99,6 +99,104 @@ exports.saveIncome = async (req, res) => {
     }
 }
 
+exports.saveofflineIncome = async (req, res) => {
+
+    Income.find({FeeSem : req.body.FeeSem,Academicyear:req.body.Academicyear,Course:req.body.Course,ApplnNo:req.body.ApplnNo,Typeoffee:req.body.Typeoffee}, function (err, data) {
+        if(err){
+            res.json(err)
+        }
+      
+        if(data.length ==0){
+           
+           SaveReceipt();
+        }
+        else{
+            return res.json({
+            status: "error",
+            message: err,
+        });
+           
+        }
+       
+    });
+   function SaveReceipt(){
+    Income.find().limit(1).sort({createdAt : -1}).lean().exec(function(err,data){
+        if(err){
+            res.json(err)
+        }
+        if(data.length !=0){
+            var ReceiptNo = data[0].RNo;           
+            req.body.RNo = ++ReceiptNo;
+            saveData();
+        }
+        else{
+           
+            req.body.RNo = 1; 
+            saveData();
+        }
+    });
+   }
+    function saveData(){
+    const income = new Income({
+     
+
+    RNo : req.body.RNo,
+    Regno : req.body.Regno,
+    ApplnNo : req.body.ApplnNo,   
+    Name : req.body.Name,
+    ReceiptDate : req.body.ReceiptDate,
+    Course : req.body.Course,
+    FeeSem : req.body.FeeSem,
+    Academicyear : req.body.Academicyear,
+    CNo : req.body.CNo,
+    Status : "UNPAID",
+    Remark : req.body.Remark,
+    Description : req.body.Description,
+    Typeoffee : req.body.Typeoffee,
+
+    TuitionFee : req.body.TuitionFee,
+    LabFee : req.body.LabFee,
+    InternetFee : req.body.InternetFee,
+    SpecialFee : req.body.SpecialFee,
+    InfrastructureFee : req.body.InfrastructureFee,
+    CapsaFee : req.body.CapsaFee,
+    DevelopmentchargeFee : req.body.DevelopmentChargeFee,
+    StudentJournalFee : req.body.StudentJournalFee,
+    AmenitiesFee : req.body.AmenitiesFee,
+    Plus2verificationFee : req.body.Plus2verificationFee,
+    ExamFees: req.body.ExamFees,
+    ConvocationFees: req.body.ConvocationFees,
+    OtherFees: req.body.OtherFees,
+    TotalcollegeFee : req.body.TotalcollegeFee,
+
+    RegistrationFee : req.body.RegistrationFee,
+    RecognitionFee : req.body.RecognitionFee,
+    MatriculationFee : req.body.MatriculationFee,
+    CulturalFee : req.body.CulturalFee,
+    SportsFee : req.body.SportsFee,
+    YouthDevelopmentFee : req.body.YouthDevelopmentFee,
+    NSSFee : req.body.NSSFee,
+    GroupInsuranceFee : req.body.GroupInsuranceFee,
+    UnivInfrastructureFee : req.body.UnivInfrastructure,
+    FlagDayFee : req.body.FlagDay,
+    UniversityTotalFee : req.body.UniversityTotalFee,
+    GrandTotalFee : req.body.GrandTotalFee,
+    
+    
+   });
+    income.save(function(err,data){
+    if (err) {
+        return res.json({
+            status: "error",
+            message: err,
+        });
+    }
+    res.json(data);
+});
+    }
+}
+
+
 
 exports.AcademicyearCourseFeeSem = function (req, res) {
 
