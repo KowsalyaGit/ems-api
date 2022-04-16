@@ -9,6 +9,7 @@ income.route('/getIncome').get(incomeController.getIncome);
 income.route('/VariousRNo/:Regno').get(incomeController.VariousRNo);
 income.route('/getRNo').get(incomeController.getRNo);
 income.route('/ReceiptNo/:Regno').get(incomeController.ReceiptNo);
+income.route('/ReceiptNumber/:ApplnNo').get(incomeController.ReceiptNumber);
 income.route('/AcademicyearCourseFeeSem/:Academicyear/:Course/:FeeSem').get(incomeController.AcademicyearCourseFeeSem);
 income.route('/VariousAcademicyearCourseFeeSem/:Academicyear/:Course/:FeeSem').get(incomeController.VariousAcademicyearCourseFeeSem);
 income.route('/feeConfirmation/:Academicyear/:Course/:Semester').get(incomeController.feeConfirmation);

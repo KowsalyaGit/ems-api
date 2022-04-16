@@ -400,6 +400,22 @@ exports.ReceiptNo = async (req, res) => {
 }
 
 
+exports.ReceiptNumber = async (req, res) => {
+
+    Income.find({Remark: "Challan",ApplnNo:req.params.ApplnNo },function(err,data){
+
+        if (err) {
+            return res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.json(data);
+        
+    });
+}
+
+
 exports.VariousRNo = async (req, res) => {
 
     Income.find({Remark: "Various Fees",Regno:req.params.Regno },function(err,data){
