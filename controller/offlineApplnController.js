@@ -128,42 +128,22 @@ exports.saveofflineAppln = async (req, res) => {
                       saveData(); 
               }                       
        });
-   function saveData(){
-    const offlineApplns = new offlineAppln({
-    
-        ApplnNo: req.body.ApplnNo,
-        firstName : req.body.firstName,
-        lastName : req.body.lastName,
-        mobileNum : req.body.mobileNum,
-        courseChoice1 : req.body.courseChoice1,
-        dob : req.body.dob,
-        aadhaarNum : req.body.aadhaarNum,
-        religion : req.body.religion,
-        community : req.body.community,
-        permanentAddress : req.body.permanentAddress,
-        permanentPincode : req.body.permanentPincode,
-        Academicyear : req.body.Academicyear,
-        coutype : req.body.coutype,
-        Amount : req.body.Amount,
-        Sem : req.body.Sem,
-        FeeStatus : req.body.FeeStatus,
-        
-    
-       });
-       offlineApplns.save(function (err) {
-        if (err) {
-            res.json({
-                status: "error",
-                message: err,
+       function saveData(){
+        var data = new offlineAppln(req.body);
+        data.save(function (err) {
+            if (err) {
+              return  res.json({
+                    status: "error",
+                    message: err,
+                });
+            }       
+            
+            return res.json({
+                status: "success",
+                data: data
             });
-        }       
-        
-        res.json({
-            status: "success",
-            data: data
         });
-    });
-   }
+       }
     }
          
     });   

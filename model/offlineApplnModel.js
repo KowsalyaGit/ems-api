@@ -8,7 +8,7 @@ var offlineApplnSchema = mongoose.Schema({
     mobileNum : Number,
     courseChoice1 : String,
     dob : String,
-    aadhaarNum: { type: Number, unique: true},
+    aadhaarNum: Number,
     religion : String,
     community : String,
     permanentAddress : String,
