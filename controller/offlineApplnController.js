@@ -171,7 +171,7 @@ exports.DatewiseReport = function (req, res) {
 
     var query;
      
-           query = {FeeStatus:"PAID",createdAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }
+           query = {coutype:req.params.coutype,createdAt:{$gte: req.params.FromDate+'T00:00:00.000Z',$lte: req.params.ToDate+'T23:59:59.000Z'} }
        
 
 
@@ -194,7 +194,7 @@ exports.CoursewiseReport = function (req, res) {
 
     var query;
      
-           query = {FeeStatus:"PAID",Academicyear:req.params.Academicyear,courseChoice1:req.params.Course  }
+           query = {Academicyear:req.params.Academicyear,courseChoice1:req.params.Course  }
        
 
        offlineAppln.find(query, function (err, data) {

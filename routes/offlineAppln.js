@@ -4,7 +4,7 @@ var offlineAppln = express.Router();
 var offlineApplnController = require('../controller/offlineApplnController');
 
 offlineAppln.route('/saveofflineAppln').post(offlineApplnController.saveofflineAppln);
-offlineAppln.route('/DatewiseReport/:FromDate/:ToDate').get(offlineApplnController.DatewiseReport);
+offlineAppln.route('/DatewiseReport/:coutype/:FromDate/:ToDate').get(offlineApplnController.DatewiseReport);
 offlineAppln.route('/CoursewiseReport/:Academicyear/:Course').get(offlineApplnController.CoursewiseReport);
 offlineAppln.route('/getApplnNo/:ApplnNo').get(offlineApplnController.getApplnNo);
 offlineAppln.route('/getAcademicyear/:Academicyear').get(offlineApplnController.getAcademicyear);

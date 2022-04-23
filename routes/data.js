@@ -97,6 +97,10 @@ data.route('/download/:file')
     .get(dataController.download);
 data.route('/appNoMail/sentEmail')
     .post(dataController.appNo);
+
+data.route('/saveoffline/Admit')
+    .post(dataController.Admit);
+
 data.route('/ApplnNo/updateStatus')
     .put(dataController.updateStatus);
 data.route('/CTrans/CourseTransfer')

@@ -237,6 +237,21 @@ exports.new = function (req, res) {
        
 };
 
+
+exports.Admit = async (req, res) => {
+   
+    var Admits = new Data(req.body);
+    Admits.save(function(err,data){
+    if (err) {
+        return res.json({
+            status: "error",
+            message: err,
+        });
+    }
+    res.json(data);
+});
+}
+
 //View
 exports.view = function (req, res) {
     Data.findById(req.params.id, function (err, data) {
