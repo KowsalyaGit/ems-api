@@ -1,6 +1,6 @@
 # ems-api
  
-MONGODB_URL=mongodb://127.0.0.1:27017/ems-db
+MONGODB_URL=mongodb+srv://ems:ems@cluster.9r5bgxc.mongodb.net/ems-db?retryWrites=true&w=majority&appName=Cluster
 NODE_ENV=dev
 JWT_SECRET=bdnoa(Ejbkby
 SMTP_PORT=465
