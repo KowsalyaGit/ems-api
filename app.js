@@ -63,7 +63,7 @@ app.use('/data', dataRouter);
 app.use('/payment', paymentRouter);
 app.use('/course', courseRouter);
 app.use('/courseDetails', courseDetailsRouter);
-app.use('/userDetails', userDetailsRouter);
+app.use('/userdetails', userDetailsRouter);
 app.use('/feeMaster', feeMasterRouter);
 app.use('/feeList', feeListRouter);
 app.use('/income', incomeRouter);

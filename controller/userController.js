@@ -46,8 +46,8 @@ exports.register = async (req, res) => {
       user.mobileNo = mobileNo;
       user.emailId = emailId;
       user.role = role;
-      user.password = await bcrypt.hash(pass, salt);
-
+      //user.password = await bcrypt.hash(pass, salt);
+      user.password = pass
       user.save(function (err) {
         if (err) {
             return res.json({
@@ -166,7 +166,7 @@ if(user != null){
 //Login
 exports.login = async (req, res) => {
     const { userId, password, role } = req.body;
-
+    
     let user = await User.findOne({
         $or: [
           { 'mobileNo': userId },
@@ -182,18 +182,18 @@ exports.login = async (req, res) => {
         });
       }
 
-      const isMatch = await bcrypt.compare(password, user.password);
+      //const isMatch = await bcrypt.compare(password, user.password);
 
-      const rolenew = user.userId ? user[0].userId : user.role;
+        const rolenew = user.userId ? user[0].userId : user.role;
 
-      //console.log(rolenew);  
+    //   console.log(rolenew);
 
-      if(!isMatch) {
-        return res.json({
-            status: "error",
-            message: "Incorrect password",
-        });
-      }
+    //   if(!isMatch) {
+    //     return res.json({
+    //         status: "error",
+    //         message: "Incorrect password",
+    //     });
+    //   }
 
       const payload = {
         user: {
@@ -204,7 +204,7 @@ exports.login = async (req, res) => {
 
         jwt.sign( payload, process.env.JWT_SECRET, (err, token) => {
             if (err) {
-                return res.json({
+                return res.json({   
                     status: "error",
                     message: err,
                 });

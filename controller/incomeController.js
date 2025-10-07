@@ -4,7 +4,15 @@ require('dotenv').config();
 //save 
 exports.saveIncome = async (req, res) => {
 
-    Income.find({FeeSem : req.body.FeeSem,Academicyear:req.body.Academicyear,Course:req.body.Course,Regno:req.body.Regno,Typeoffee:req.body.Typeoffee}, function (err, data) {
+
+    var query;
+    if(req.body.FeeSem === 1){
+        query =  {FeeSem : req.body.FeeSem,Academicyear:req.body.Academicyear,Course:req.body.Course,ApplnNo:req.body.ApplnNo,Typeoffee:req.body.Typeoffee }
+    }else{
+        query =  { FeeSem : req.body.FeeSem,Academicyear:req.body.Academicyear,Course:req.body.Course,Regno:req.body.Regno,Typeoffee:req.body.Typeoffee }
+    }
+
+    Income.find(query, function (err, data) {
         if(err){
             res.json(err)
         }

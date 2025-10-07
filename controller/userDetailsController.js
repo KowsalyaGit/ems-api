@@ -1,8 +1,10 @@
 UserDetails = require('../model/userDetailsModel');
+User = require('../model/userModel');
 require('dotenv').config();
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const userDetails = require('../routes/userDetails');
 
 //save userDetails
 exports.saveUserDetails = async (req, res) => {
@@ -105,55 +107,54 @@ exports.deleteUserDetails = async (req, res) => {
 
 //AdminLogin
 exports.Adminlogin = async (req, res) => {
-    const { userId, password, role} = req.body;
-    
-     let userdetails = await UserDetails.findOne({
-        $or: [
-          { 'UserID': userId },
-          { 'Password': password },
-          { 'Role': role}
-        ]
-      });
 
-      if(!userdetails) {
-        return res.json({
+     const { userId, password, role } = req.body;
+
+    let user = await User.findOne({
+        $or: [
+            { 'mobileNo': userId },
+            { 'emailId': userId }
+        ]
+    });
+    
+    if (!user) {
+        return res.status(404).json({
             status: "error",
             message: "User does not exist",
         });
-      }
+    }
 
-      //const isMatch = await bcrypt.compare(password, userdetails.Password);
-            
-      const isMatch = await (req.body.password == userdetails.Password);  
-
-      const rolenew = userdetails.userId ? userdetails[0].userId : userdetails.Role;
-
-      //console.log(rolenew);  
-
-                                                    
-      if(!isMatch) {
-        return res.json({
+    // Plain text password comparison
+    if (password !== user.password) {
+        return res.status(401).json({
             status: "error",
             message: "Incorrect password",
         });
-      }
+    }
 
-      const payload = {
+    // If role is provided, check it
+    if (role && role !== user.role) {
+        return res.status(403).json({
+            status: "error",
+            message: "Incorrect role",
+        });
+    }
+
+    const payload = {
         userdetails: {
-            id: userdetails._id,
-            role: userdetails.role
+            id: user._id,
+            role: user.role
         }
-        };
+    };
 
-        jwt.sign( payload, process.env.JWT_SECRET, (err, token) => {
-            if (err) {
-                return res.json({
-                    status: "error",
-                    message: err,
-                });
-            }
-
-            return res.json({status: "success", token: token, role: rolenew});
-        });                  
+    jwt.sign(payload, process.env.JWT_SECRET, (err, token) => {
+        if (err) {
+            return res.status(500).json({
+                status: "error",
+                message: err,
+            });
+        }
+        return res.status(200).json({ status: "success", token: token, role: user.role });
+    });
 
 }
